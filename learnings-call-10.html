@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learnings Call #10 — Creative Strategy</title>
+<style>
+  :root{
+    --bg:#070608;
+    --bg-soft:#0d0a12;
+    --card:rgba(255,255,255,0.025);
+    --card-border:rgba(255,255,255,0.07);
+    --pink:#ff48b0;
+    --magenta:#e23bd6;
+    --purple:#8b5cff;
+    --violet:#a76bff;
+    --text:#ece8f1;
+    --muted:#9b93ab;
+    --faint:#6c6478;
+    --good:#33d6a6;
+    --warn:#ffb454;
+    --grad:linear-gradient(105deg,#ff4d9d 0%,#c44be8 50%,#7b5cff 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(620px 520px at 78% 12%, rgba(139,92,255,0.16), transparent 60%),
+      radial-gradient(520px 480px at 12% 78%, rgba(255,72,176,0.13), transparent 60%),
+      radial-gradient(700px 600px at 50% 110%, rgba(199,75,232,0.10), transparent 60%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(7,6,8,0.72);border-bottom:1px solid var(--card-border)}
+  nav .wrap{display:flex;align-items:center;gap:8px;height:60px;flex-wrap:wrap}
+  .brand{font-weight:700;letter-spacing:.5px;margin-right:auto;font-size:15px}
+  .brand .dot{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:99px;transition:.2s;white-space:nowrap}
+  nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+
+  /* hero */
+  header{padding:84px 0 40px;text-align:center}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);margin-bottom:20px;padding:6px 16px;border:1px solid rgba(167,107,255,.3);border-radius:99px;background:rgba(139,92,255,.08)}
+  h1{font-size:clamp(38px,7vw,72px);line-height:1.04;font-weight:800;letter-spacing:-1.5px;background:linear-gradient(180deg,#ffffff 30%,#cdbff5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
+  .sub{color:var(--muted);font-size:18px;max-width:680px;margin:0 auto 14px}
+  .meta-row{color:var(--faint);font-size:14px;margin-top:8px}
+  .meta-row b{color:var(--violet);font-weight:600}
+
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;text-decoration:none;padding:11px 20px;border-radius:99px;transition:.2s}
+  .btn.primary{color:#fff;background:var(--grad);box-shadow:0 0 30px rgba(199,75,232,.25)}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{color:var(--text);border:1px solid var(--card-border);background:var(--card)}
+  .btn.ghost:hover{border-color:rgba(167,107,255,.4)}
+
+  /* loom embed */
+  .loom-shell{margin:38px auto 0;max-width:900px;border-radius:18px;padding:10px;background:var(--card);border:1px solid var(--card-border);box-shadow:0 0 60px rgba(199,75,232,.12)}
+  .loom-frame{position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:12px;background:#000}
+  .loom-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .loom-cap{font-size:13px;color:var(--faint);text-align:center;margin-top:14px}
+  .loom-cap a{color:var(--violet)}
+
+  /* corrupted-recording note (use instead of the loom embed when no recording) */
+  .corrupt{margin:38px auto 0;max-width:640px;border-radius:16px;padding:20px 26px;background:rgba(255,180,84,.05);border:1px dashed rgba(255,180,84,.32);display:flex;gap:16px;align-items:center;text-align:left}
+  .corrupt .ic{font-size:26px;flex:0 0 auto}
+  .corrupt .t{font-size:14.5px;color:var(--muted)}
+  .corrupt .t b{color:var(--warn);font-weight:600}
+
+  .editor-tag{margin:22px auto 0;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.4px;color:var(--pink);padding:7px 16px;border-radius:99px;background:rgba(255,72,176,.08);border:1px solid rgba(255,72,176,.22)}
+
+  /* sections */
+  section{padding:54px 0;scroll-margin-top:74px}
+  .section-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .section-head .num{font-size:13px;font-weight:700;color:var(--pink);border:1px solid rgba(255,72,176,.3);border-radius:8px;padding:3px 9px}
+  h2{font-size:clamp(26px,4vw,36px);font-weight:750;letter-spacing:-.5px}
+  .section-lead{color:var(--muted);font-size:16px;max-width:720px;margin:10px 0 30px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .stat{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+  .stat::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:.8}
+  .stat .big{font-size:28px;font-weight:800;line-height:1.15;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+  .stat .lbl{font-size:14px;color:var(--muted)}
+  .stat .lbl b{color:var(--text);font-weight:600}
+
+  .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:26px 28px;margin-bottom:16px;transition:.25s}
+  .card:hover{border-color:rgba(167,107,255,.28);background:rgba(255,255,255,0.035)}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card h3 .ic{width:30px;height:30px;flex:0 0 30px;border-radius:9px;display:grid;place-items:center;background:rgba(139,92,255,.14);font-size:15px}
+  .card p{color:var(--muted);font-size:15.5px;margin-top:8px}
+  .card p b,.card li b{color:var(--text);font-weight:600}
+  .card a.ref{color:var(--violet);font-size:13px;text-decoration:none;border-bottom:1px dotted rgba(167,107,255,.4)}
+  .card a.ref:hover{color:var(--pink)}
+  .card .why{color:var(--text);font-size:15px;margin-top:12px;padding-left:14px;border-left:2px solid var(--magenta)}
+
+  ul.clean{list-style:none;margin-top:10px}
+  ul.clean li{position:relative;padding-left:24px;margin:9px 0;color:var(--muted);font-size:15.5px}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:99px;background:var(--grad)}
+
+  /* "if -> then" fix lines */
+  .fix{display:flex;gap:12px;margin:11px 0;font-size:15px;color:var(--muted)}
+  .fix .arrow{color:var(--pink);font-weight:700;flex:0 0 auto}
+  .fix b{color:var(--text);font-weight:600}
+
+  .label{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin:16px 0 4px}
+  .label.win{color:var(--good)}
+  .label.why{color:#ff6f93}
+  .label.fix{color:var(--violet)}
+
+  .batch-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+  @media(max-width:680px){.batch-cols{grid-template-columns:1fr}}
+
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.5px;padding:3px 10px;border-radius:99px;margin:2px 4px 2px 0}
+  .pill.good{background:rgba(51,214,166,.12);color:var(--good);border:1px solid rgba(51,214,166,.25)}
+  .pill.bad{background:rgba(255,72,120,.1);color:#ff6f93;border:1px solid rgba(255,72,120,.22)}
+  .pill.neutral{background:rgba(139,92,255,.1);color:var(--violet);border:1px solid rgba(139,92,255,.22)}
+  .pill.warn{background:rgba(255,180,84,.1);color:var(--warn);border:1px solid rgba(255,180,84,.25)}
+
+  /* ranked scroll-stopper / reference rows */
+  .stopper{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:13px;background:var(--card);border:1px solid var(--card-border);margin-bottom:10px;flex-wrap:wrap}
+  .stopper .rate{font-size:24px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;flex:0 0 88px;line-height:1}
+  .stopper .desc{flex:1 1 240px;font-size:15px;color:var(--muted)}
+  .stopper .desc b{color:var(--text)}
+  .stopper .desc .code{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.4px}
+  .stopper a{color:var(--violet);font-size:13px;text-decoration:none;white-space:nowrap;border-bottom:1px dotted rgba(167,107,255,.4)}
+  .stopper a:hover{color:var(--pink)}
+
+  /* action checklist */
+  .check{display:flex;gap:14px;padding:16px 18px;border-radius:13px;background:var(--card);border:1px solid var(--card-border);margin-bottom:10px;align-items:flex-start}
+  .check .box{width:22px;height:22px;flex:0 0 22px;border-radius:7px;margin-top:1px;border:1.5px solid var(--purple);background:rgba(139,92,255,.08)}
+  .check .ctxt{font-size:15.5px}
+  .check .ctxt b{color:var(--text)}
+  .check .owner{font-size:12px;font-weight:600;color:var(--pink);letter-spacing:.5px;text-transform:uppercase;margin-left:auto;white-space:nowrap;padding-left:12px}
+
+  /* philosophy / mantra banner */
+  .philosophy{position:relative;overflow:hidden;text-align:center;border-radius:22px;padding:48px 32px;background:linear-gradient(140deg,rgba(255,77,157,.1),rgba(123,92,255,.1));border:1px solid rgba(255,72,176,.24)}
+  .philosophy .q{font-size:clamp(24px,4.5vw,38px);font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:16px}
+  .philosophy .q .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .philosophy p{color:var(--muted);font-size:16px;max-width:560px;margin:6px auto 0}
+  .philosophy p b{color:var(--text)}
+
+  /* bonus / announcement banner */
+  .bonus{position:relative;overflow:hidden;text-align:center;border-radius:22px;padding:54px 32px;margin-top:8px;background:linear-gradient(140deg,rgba(255,77,157,.14),rgba(123,92,255,.14));border:1px solid rgba(255,72,176,.28);box-shadow:0 0 70px rgba(199,75,232,.16)}
+  .bonus .kicker{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:14px}
+  .bonus .amt{font-size:clamp(48px,9vw,86px);font-weight:850;line-height:1;letter-spacing:-2px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+  .bonus .for{font-size:20px;font-weight:700;color:var(--text);margin-bottom:14px}
+  .bonus p{color:var(--muted);font-size:15.5px;max-width:560px;margin:0 auto}
+  .bonus p b{color:var(--text)}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);margin:18px 0}
+  footer{padding:50px 0 80px;text-align:center;color:var(--faint);font-size:14px}
+  footer .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+  .note{font-size:13.5px;color:var(--faint);background:rgba(139,92,255,.05);border:1px dashed rgba(139,92,255,.2);border-radius:12px;padding:14px 18px;margin-top:14px}
+  .note b{color:var(--violet)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap">
+    <span class="brand">OVIA · <span class="dot">Learnings</span></span>
+    <a href="#patterns">Patterns</a>
+    <a href="#mechanism">Mechanism</a>
+    <a href="#batches">Batches</a>
+    <a href="#open">Open questions</a>
+    <a href="#actions">Action items</a>
+  </div>
+</nav>
+
+<!-- ============ [HERO] ============ -->
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Creative Strategy · Call #10</span>
+    <h1>Learnings Call #10</h1>
+    <p class="sub">The mechanism is only the belief bridge. What they're actually buying is watching someone visibly not be hungry — so show it, show it faster, and get the product out of the lens.</p>
+    <p class="meta-row">4 batches reviewed · <b>#107 · #114 · CB162-E · #103</b> · ~92 min · Meta window 7–21 Jul 2026</p>
+
+    <div class="hero-btns">
+      <a class="btn primary" href="https://miro.com/app/board/uXjVH5zMsKk=/" target="_blank" rel="noopener">🧩 Open the Miro board</a>
+      <a class="btn ghost" href="https://app.tryatria.com/ad/m1642454000219479" target="_blank" rel="noopener">📎 CB37-D reference ad</a>
+    </div>
+
+    <div class="corrupt">
+      <span class="ic">🎥</span>
+      <span class="t"><b>No Loom link yet.</b> The recording had not been posted at the time this page was built — this writeup comes straight from the call transcript and the Miro board. Drop the Loom in when it's up and it can be embedded here.</span>
+    </div>
+
+    <span class="editor-tag">✂️ Built for editors — focused, do-this-now takeaways</span>
+  </div>
+</header>
+
+<!-- ============ [PHILOSOPHY] ============ -->
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="philosophy">
+      <div class="q">Nobody is buying the mechanism. <span class="grad">They're buying "holy shit, she's just not hungry."</span></div>
+      <p>The explanation exists only to make the outcome believable. <b>The more ways we find to SHOW someone not hungry — and the sooner in the video we show it — the more this keeps scaling.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [STAT-CARDS] cross-batch patterns ============ -->
+<section id="patterns">
+  <div class="wrap">
+    <div class="section-head"><span class="num">01</span><h2>The three rules for this week</h2></div>
+    <p class="section-lead">These came up in more than one batch and they're the tests we're actually running. Everything else on this page supports them.</p>
+
+    <div class="cards">
+      <div class="stat">
+        <div class="big">Tease it in<br>1.5 seconds</div>
+        <div class="lbl">Open on the outcome line — <b>"I'm not hungry anymore"</b> — hold it max 1.5s, then hard-cut to the real opening. Two hooks stacked tight.</div>
+      </div>
+      <div class="stat">
+        <div class="big">Product never<br>hits the lens</div>
+        <div class="lbl">Retention on #114 drops at the exact frame the packet comes up to camera. <b>One setup sentence first, and keep it out of your face.</b></div>
+      </div>
+      <div class="stat">
+        <div class="big">Mechanism =<br>one sentence</div>
+        <div class="lbl">One unified causal chain, not a stack of separate ones. <b>Split-test detailed vs one-liner</b> wherever a batch has variants.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3><span class="ic">🔁</span>What showed up in every single batch</h3>
+      <ul class="clean">
+        <li><b>An older woman on camera.</b> Every ad that's spending has one, the buyers are older women, and Meta is serving these to 55+. Even the ad built around a 25-year-old guy converted older women. #107 swapped in a young girl and stalled in the learning phase.</li>
+        <li><b>Some visible proof of not-hungry.</b> The candy bowl he never reaches for. The plate she won't finish. The bite followed by "you know what? I'm full." <b>Find new ways to show it — that's the whole product.</b></li>
+        <li><b>Borrowed authority we did not invent.</b> CB162-E works because people were <em>already</em> arguing about Huda's transformation. We channel existing drama; we can't manufacture a person nobody's talking about.</li>
+        <li><b>Show it, don't say it.</b> The Resilient parasite ad lands because you actually SEE the worm in the sushi. Same principle, our version: show the not-hungry.</li>
+        <li><b>Keep the winner as a control.</b> Rule of thumb going forward — if a hook is working, it rides along in the next test. If the new thing takes spend, great; if it doesn't, nothing better existed.</li>
+      </ul>
+      <p class="why"><b>The tension worth naming:</b> the spiking-drink ads under-explain (huge attention, weaker conversion) and #114 over-sells (fewer stay, but the ones who do convert). They land at roughly the same CPA from opposite directions. The fix isn't more explanation or less — it's a <b>smoother handoff</b> into the product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [CARD] the mechanism playbook ============ -->
+<section id="mechanism">
+  <div class="wrap">
+    <div class="section-head"><span class="num">02</span><h2>The mechanism block — the reusable version</h2></div>
+    <p class="section-lead">Pulled off CB37-D (the restaurant "bro" ad) because it's the cleanest example we have. Treat this as the structure to reuse, not copy word-for-word.</p>
+
+    <div class="card">
+      <h3><span class="ic">🧠</span>Why this one works</h3>
+      <p><em>"It's basically got GLP-1 activation in it. So whenever you drink this stuff it's gonna activate those serotonin molecules in your brain, pretty much cutting out all the cravings. It also has magnesium, which helps with the stress."</em></p>
+      <ul class="clean">
+        <li><b>It unifies instead of stacking.</b> It isn't "GLP-1 does this AND serotonin does that" — it's one thing causing the next causing the next. Two separate mechanisms is two things to understand; one chain is one.</li>
+        <li><b>It doesn't have to be airtight.</b> GLP-1 activating serotonin molecules doesn't really make sense — and it converts anyway, because the mechanism is only there as a <b>belief bridge</b> for an outcome they've already watched happen.</li>
+        <li><b>It ends on future pacing, not on science.</b> "I've been drinking this, I feel good all the time, I'm looking way more fit for summertime."</li>
+        <li><b>Careful, though.</b> Anyone who actually knows the science clocks it as nonsense. Safer version: keep <em>one</em> claim — "it's got GLP-1 activation in it, and that pretty much cuts out the cravings."</li>
+      </ul>
+      <p class="why"><b>Where the ban applies:</b> the batches that failed are the ones that taught GLP-1, <em>then</em> serotonin, <em>then</em> metabolism, <em>then</em> "and you get it all in one." That's cognitive load — it makes it feel like you need four things to get a result. Tease the product as the simple container first.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🎬</span>Believability rules that came out of the teardowns</h3>
+      <ul class="clean">
+        <li><b>Cut for time passing.</b> If she takes one bite and he immediately says "that's all you're gonna eat?", it reads as confusing. The winners cut away and come back on his cleared plate and her untouched one.</li>
+        <li><b>Speed up AI footage.</b> Generated dialogue runs slow. Pull audio forward, run ~1.5x in CapCut, kill the split-second silences (#107 has dead air right before "here's your entree").</li>
+        <li><b>Continuity QC every generated cut.</b> #114's jacket morphs light grey → dark grey mid-video. Check garments, props, hands.</li>
+        <li><b>Before/after has to read frame-to-frame.</b> If frame one and the last frame look like the same person, it isn't a transformation — #103 died on exactly this.</li>
+        <li><b>Show the spike.</b> Clear water turning pink as he mixes it reads instantly as "spiked," and that variant outperformed — even though it made people ask why grandma didn't notice.</li>
+        <li><b>Food in the first frame.</b> Our avatar is hungry. Food on screen at 0:00 stops the scroll.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [BATCH-CARD] teardowns ============ -->
+<section id="batches">
+  <div class="wrap">
+    <div class="section-head"><span class="num">03</span><h2>Batch teardowns</h2></div>
+    <p class="section-lead">Spend was thin on two of these — #107 sat around $100 and never exited learning, #103's data is roughly $17 across variants. Treat those numbers as directional, not conclusive.</p>
+
+    <div class="card">
+      <h3><span class="ic">🧩</span>Batch #107 — spiking drink, younger PCOS avatar <span class="pill bad">no real spend</span> <span class="pill warn">stuck in learning</span></h3>
+      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/729f1220-65f5-4f4f-ba07-27023cc8e2ca" target="_blank" rel="noopener">Frame.io ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label why">What went wrong</div>
+          <ul class="clean">
+            <li><b>Too similar to what's already running.</b> The number-one cause. It's competing head-on with #88, #100, #104 — same concept, same AI avatar we've already scaled elsewhere.</li>
+            <li><b>Wrong character age.</b> The top spender spikes a nana; this one spikes a young girl. Spiking an old woman's drink is simply a more interesting question — what's the intention?</li>
+            <li><b>Nobody believed she was acting.</b> The top spender's comments are full of "great nana acting, such a comedy." #107 got none of that — <b>it's harder to believe a nana is acting than a young girl</b>, so the young-girl version reads as another TikTok stunt and gets scrolled.</li>
+            <li><b>Avatar/serving mismatch.</b> PCOS scripts want a younger woman, but Meta is serving this to 55+, where the focus has shifted to menopause. The viewer can't relate to the person on screen.</li>
+            <li><b>The one-bite jump cut.</b> She takes a bite and he questions her instantly, with no cut to signal time passing.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label win">What to keep</div>
+          <ul class="clean">
+            <li><b>The hook itself was fine.</b> Hook rate was only slightly down; something falling in the background helps for muted autoplay. This wasn't a hook failure.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Put an older character back in.</b> <span style="color:var(--faint)">Older buyers convert when they see themselves on camera.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>If we keep PCOS, go solution-aware.</b> <span style="color:var(--faint)">"Stop taking metformin daily — there's a natural alternative." Stage 4/5 sophistication market; an unaware ad can't win there.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Two mechanisms vs their one.</b> <span style="color:var(--faint)">Berberine complex plus 5-HTP on the brain, against competitors that only work one way.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Drop the insulin-resistance explainer.</b> <span style="color:var(--faint)">They already know it's the root cause. Swap in authority: "I heard PCOS girls talking about it on a podcast."</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Run one obviously-a-skit variant and one that isn't.</b> <span style="color:var(--faint)">The team split on whether the skit read helps — settle it with a test.</span></div></div>
+        </div>
+      </div>
+      <p class="why"><b>Status:</b> being forced into an ABO with a cost cap to see whether Meta will spend at an acceptable CPA. <b>Whether we keep chasing PCOS at all is still open.</b></p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🍋</span>Batch #114 — nana sells it herself, no spiking <span class="pill good">scaling</span> <span class="pill neutral">~ level with the #88 top spender</span></h3>
+      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/b92676ad-4d3a-4713-9e22-8b100abdde68" target="_blank" rel="noopener">Frame.io ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label win">What's making it work</div>
+          <ul class="clean">
+            <li><b>Older woman on camera, again.</b> The one hard fact across every winner.</li>
+            <li><b>Transformation at 10 seconds.</b> #88 took ~40s to get there. One bite, eyebrows up, "you know what? I'm full." <b>Proof before product.</b></li>
+            <li><b>She sells harder — and that's a feature.</b> The spiking ads under-explain, so plenty watch but fewer believe. This one over-explains, so more click off but the ones who stay actually buy. Same CPA from the opposite direction.</li>
+            <li><b>The hook is stupidly simple and it beat the clever ones.</b> "Is anybody else's grandma like this?" outperformed the "are you on GLP-1s?" hooks. It doesn't feel like an ad at all.</li>
+            <li><b>The character has energy.</b> She's not slow, not heavy, not styled like the #88 nana — and that reads.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label why">What to improve</div>
+          <ul class="clean">
+            <li><b>The product-in-the-lens dip.</b> Retention falls off a cliff at the exact frame she holds the packet up and starts explaining. It's on screen most of the video.</li>
+            <li><b>The product intro is abrupt.</b> It jumps straight from the reveal into selling.</li>
+            <li><b>Slow first few seconds</b> and <b>the jacket morphs</b> light grey to dark grey across the video.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>One setup sentence before the product.</b> <span style="color:var(--faint)">"My nurse recommended this and I've been taking it." Builds authority, makes it educational instead of a pitch.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Or lead with mechanism as a tease.</b> <span style="color:var(--faint)">"I got my hands on that GLP-1 thing" — GLP-1 already carries the meaning, no explaining required.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Stitch test.</b> <span style="color:var(--faint)">Original nana ad up to "I'm not hungry anymore," slight transition, then #114's explanation as the product intro. Ignore that it doesn't logically make sense — brain-rot stitches work.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Two-grandma camera flip.</b> <span style="color:var(--faint)">#114's grandma spikes #88's grandma's drink, camera flips, the second explains she's been on it a week. Needs two distinct voices.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Cut the transformation line into the hook.</b> <span style="color:var(--faint)">Tease "I'm not hungry anymore," 1.5s max, then re-hook with "I'm spiking my nana's drink."</span></div></div>
+        </div>
+      </div>
+      <p class="why"><b>New concepts off this batch, all up for grabs:</b> grandson orders for her and she interrupts that it's too much · she steps to the washroom, he orders, the food lands untouched · early-morning kitchen — "which natural remedy are you trying now?" in a loaded tone · she's not even making it for herself, she's feeding the grandkid: "grandma, what did you put in this? I haven't eaten all day."</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">📱</span>CB162-E — organic content format, Huda / Love Island authority <span class="pill neutral">some spend, some sales</span></h3>
+      <a class="ref" href="https://www.facebook.com/61579184211123/posts/122174725376972807/" target="_blank" rel="noopener">FB post ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label win">What made it work</div>
+          <ul class="clean">
+            <li><b>Authority we didn't invent.</b> Huda's transformation already had a conspiracy attached to it — "we all know damn well she was up to something." We just connected the dots to the product. <b>This is the whole trick: channel existing drama, never manufacture it.</b></li>
+            <li><b>FOMO framing in the text hook.</b> "At this point, who's NOT taking this?" — the entire ad runs on you're-falling-behind, not on benefits.</li>
+            <li><b>It mirrors the viewer's internal dialogue.</b> "I always thought it was just another bullshit TikTok shop product, but there comes a point of defeat when you see something enough times." He voices the skeptic's objection before they can.</li>
+            <li><b>Product introduction never feels like an ad.</b> By the time he pulls it out, the people who'd buy have already bought in.</li>
+            <li><b>He shows he's not snacking</b> — candy sitting all around him and he doesn't touch it.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label why">What to improve</div>
+          <ul class="clean">
+            <li><b>Way too long.</b> Only ~0.5% reach the end. The "when you see something on your For You page enough times" tangent can lose half its runtime.</li>
+            <li><b>The ingredient list is weak.</b> "Berberine, yerba mate, if you know you know" doesn't carry belief.</li>
+            <li><b>It's a guy.</b> The pain he describes — "I ate perfectly, tracked calories, still woke up puffy and bloated" — is verbatim what menopausal women say. Wrong mouth.</li>
+            <li><b>The order is backwards</b> (Leo's hypothesis): product hype → the TikTok tangent → pains → product again.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Reorder it.</b> <span style="color:var(--faint)">Transformation hype → her pains → product + mechanism → risk reversal (90-day guarantee, low stock). More logical in the prospect's brain.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Remake it with female AI UGC.</b> <span style="color:var(--faint)">It's a girls' product — a guy telling the story is the ceiling.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Find an older celebrity with the same kind of drama.</b> <span style="color:var(--faint)">An actress with real existing transformation talk, so we hit the 55+ demo that's actually buying.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Do the Resilient parasite format for Huda.</b> <span style="color:var(--faint)">Open on found organic footage — "no, I don't take Ozempic, I take something natural" — then cut to us. Find the clip, don't create it.</span></div></div>
+        </div>
+      </div>
+      <p class="why"><b>The bigger idea here:</b> the Resilient parasite ad works because it <em>shows you the worm in the sushi</em>. It reframes every symptom back to one cause and none of the education comes from the person selling. That format is underrated and we can control it — the standing to-do is to keep a running list of <b>organic viral clips and existing sources of weight-loss authority</b>, because that list is the raw material.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">📅</span>Batch #103 — day-by-day timeline iteration of #88 <span class="pill bad">lost</span> <span class="pill neutral">v3: 44% hook rate · 0:12 avg play</span></h3>
+      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/c25198f9-a52c-4fcd-a4f6-3a0dece23aa3" target="_blank" rel="noopener">Frame.io ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label why">What made it lose</div>
+          <ul class="clean">
+            <li><b>The transformation isn't visible.</b> Put the first frame next to the last frame and it's the same person. If the whole big idea is showing the transformation, that's fatal.</li>
+            <li><b>The timeline isn't believable from his POV.</b> The grandson would have to be with her constantly, filming and spiking, for 20 days. It would make more sense if <b>she</b> were documenting herself.</li>
+            <li><b>Pants fitting again in 20 days</b> strains belief on its own, with no before shot to anchor it.</li>
+            <li><b>Weaker hook than the other spiking variants.</b> The winning ones are in a restaurant; this one isn't.</li>
+            <li><b>Bystanders in frame.</b> How is nobody noticing him spike her drink?</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label win">What to keep</div>
+          <ul class="clean">
+            <li><b>The premise still grabs.</b> "Spiking my grandma's drink" is a good hook — it just needed the open loop and the restaurant setting.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Make the before/after brutally obvious.</b> <span style="color:var(--faint)">Err toward more drastic even at some cost to believability at the start — the Primal Queen size-14-wedding-dress ad is the benchmark. Keep it 100% real-looking.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Better open loop in the hook.</b> <span style="color:var(--faint)">"You won't believe what happens on day 30" — and tease the result.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Move it to a restaurant.</b> <span style="color:var(--faint)">"Day 1 of spiking grandma's drink" in the setting that's already crushing on hook rate.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Hidden-camera framing.</b> <span style="color:var(--faint)">He films himself, camera stashed low at an awkward angle, spikes it, grabs it and leaves.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Scale comparison as unfakeable proof.</b> <span style="color:var(--faint)">Day 1 on the scale vs day 30 — you can't really fake the number moving.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Name the outcome out loud.</b> <span style="color:var(--faint)">Not "what is in this stuff" — "you put this in my drink and I didn't eat that entire day."</span></div></div>
+        </div>
+      </div>
+      <p class="why"><b>Mei — in progress:</b> a variant that drops the spike entirely and lands the transformation before the 10-second mark. One sale in already; she'll stack these call learnings on top of it.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🍻</span>CB37-D — restaurant "bro" ad <span class="pill good">reference / control</span></h3>
+      <a class="ref" href="https://app.tryatria.com/ad/m1642454000219479" target="_blank" rel="noopener">Atria ↗</a>
+      <p>Not a batch under review — pulled up as the mechanism reference. Built for 25+ men and converting older women anyway.</p>
+      <ul class="clean">
+        <li><b>Curiosity is created organically</b> — tied to the outcome, never to the product.</li>
+        <li><b>Our winners are dialogues.</b> Two people talking, one skeptical.</li>
+        <li><b>Food in the first frame</b> stops a hungry avatar's scroll.</li>
+        <li><b>"I've been drinking this" → no cravings</b> carries more belief than a claim about the product.</li>
+      </ul>
+      <p class="why"><b>Untested spin-offs sitting on the board:</b> grandpas / 50-55+ men for camouflage · the food almost thrown out (with something weird in the garbage can) · grandma "consistently drinking this" and the grandson confronting her · prespiked drinks · spike it at a bar · strawberry refresher as a secret swap for the girlfriend or wife.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ open questions ============ -->
+<section id="open">
+  <div class="wrap">
+    <div class="section-head"><span class="num">04</span><h2>Open questions — not settled on the call</h2></div>
+    <p class="section-lead">These were argued and left undecided on purpose. Leo's queue.</p>
+
+    <div class="card">
+      <ul class="clean">
+        <li><b>Is PCOS an avatar we should chase at all?</b> Khush says no — metformin is cheaper than us and it's a stage 4/5 sophistication market. Leo says maybe, but only with a solution-aware hook. No call made.</li>
+        <li><b>Magnesium in the mechanism — keep or cut?</b> Khush: cut it, give only enough to earn the click and let the PDP do the educating. Mei: it stacks benefits for higher perceived value. Board's verdict: <b>only way to know is to test.</b></li>
+        <li><b>Does "obviously a skit" help or hurt?</b> Khush wants tells that make it look unstaged. Mei says the grandma acting <em>is</em> the curiosity and that's exactly why people stay. Proposed resolution: run one of each.</li>
+        <li><b>How do we get two distinct AI voices in one scene?</b> ElevenLabs voice-changer fixes the identical-voice problem but strips the room tone; CapCut vocal isolation is "not the same"; Envato ambience laid under as a separate track is the workaround; generating with two different accents up front is the other option. No default workflow yet.</li>
+        <li><b>How many variants per batch?</b> Mei's current ad is heading toward 8. Leo runs 3–5, or splits into separate ad sets. Landed soft rather than decided.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [CHECKLIST] action items ============ -->
+<section id="actions">
+  <div class="wrap">
+    <div class="section-head"><span class="num">05</span><h2>Action items</h2></div>
+    <p class="section-lead">If you read one section, read this.</p>
+
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Ship the Meta naming convention.</b> A preset that auto-fills batch #, variation #, strategist, editor, format, angle and avatar — with AI generating it from the inputs in Asana. Unlocks spend-by-angle and spend-by-avatar reporting.</div><div class="owner">Leo · today</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Monthly creative report.</b> Full spend/CPA breakdown segmented by those fields. Partial this month, real data next month.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Send the Envato ambience/SFX packs</b> so ambience can be rebuilt as a separate track in Premiere when voices get swapped.</div><div class="owner">Khush</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>More editors.</b> Job post going up, plus DMing strong AI editors directly rather than waiting on applications.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Keep a running list of organic viral clips</b> and existing sources of weight-loss authority. This list is the raw input for the CB162-E format — it's the highest-leverage thing on here.</div><div class="owner">Everyone</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Black Friday / Cyber Monday prep.</b> Nov 27. Focus starts in October: banner promos over the year's winning ads, strict targeting, email blasts. All the work happens before the day.</div><div class="owner">Leo</div></div>
+
+    <div class="note"><b>Note on this page:</b> built from the call transcript plus the Miro board. <b>No Loom link existed at the time of writing</b> — add it when it's up. Batch #106 was mentioned by Mei as an existing stitched variation but wasn't reviewed; it's queued for a future call. Spend figures on #103 and #107 are small, so treat them as directional.</div>
+  </div>
+</section>
+
+<!-- ============ [FOOTER] ============ -->
+<footer>
+  <div class="wrap">
+    <p class="grad">Learnings Call #10</p>
+    <p style="margin-top:6px">Show them not being hungry. Show it sooner. Get the product out of the lens.</p>
+  </div>
+</footer>
+
+</body>
+</html>
