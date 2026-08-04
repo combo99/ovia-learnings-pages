@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learnings Call #12 — Creative Strategy</title>
+<style>
+  :root{
+    --bg:#070608;
+    --bg-soft:#0d0a12;
+    --card:rgba(255,255,255,0.025);
+    --card-border:rgba(255,255,255,0.07);
+    --pink:#ff48b0;
+    --magenta:#e23bd6;
+    --purple:#8b5cff;
+    --violet:#a76bff;
+    --text:#ece8f1;
+    --muted:#9b93ab;
+    --faint:#6c6478;
+    --good:#33d6a6;
+    --warn:#ffb454;
+    --grad:linear-gradient(105deg,#ff4d9d 0%,#c44be8 50%,#7b5cff 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(620px 520px at 78% 12%, rgba(139,92,255,0.16), transparent 60%),
+      radial-gradient(520px 480px at 12% 78%, rgba(255,72,176,0.13), transparent 60%),
+      radial-gradient(700px 600px at 50% 110%, rgba(199,75,232,0.10), transparent 60%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(7,6,8,0.72);border-bottom:1px solid var(--card-border)}
+  nav .wrap{display:flex;align-items:center;gap:8px;height:60px;flex-wrap:wrap}
+  .brand{font-weight:700;letter-spacing:.5px;margin-right:auto;font-size:15px}
+  .brand .dot{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:99px;transition:.2s;white-space:nowrap}
+  nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+
+  /* hero */
+  header{padding:84px 0 40px;text-align:center}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);margin-bottom:20px;padding:6px 16px;border:1px solid rgba(167,107,255,.3);border-radius:99px;background:rgba(139,92,255,.08)}
+  h1{font-size:clamp(38px,7vw,72px);line-height:1.04;font-weight:800;letter-spacing:-1.5px;background:linear-gradient(180deg,#ffffff 30%,#cdbff5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
+  .sub{color:var(--muted);font-size:18px;max-width:680px;margin:0 auto 14px}
+  .meta-row{color:var(--faint);font-size:14px;margin-top:8px}
+  .meta-row b{color:var(--violet);font-weight:600}
+
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;text-decoration:none;padding:11px 20px;border-radius:99px;transition:.2s}
+  .btn.primary{color:#fff;background:var(--grad);box-shadow:0 0 30px rgba(199,75,232,.25)}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{color:var(--text);border:1px solid var(--card-border);background:var(--card)}
+  .btn.ghost:hover{border-color:rgba(167,107,255,.4)}
+
+  /* loom embed */
+  .loom-shell{margin:38px auto 0;max-width:900px;border-radius:18px;padding:10px;background:var(--card);border:1px solid var(--card-border);box-shadow:0 0 60px rgba(199,75,232,.12)}
+  .loom-frame{position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:12px;background:#000}
+  .loom-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .loom-cap{font-size:13px;color:var(--faint);text-align:center;margin-top:14px}
+  .loom-cap a{color:var(--violet)}
+
+  /* corrupted-recording note (use instead of the loom embed when no recording) */
+  .corrupt{margin:38px auto 0;max-width:640px;border-radius:16px;padding:20px 26px;background:rgba(255,180,84,.05);border:1px dashed rgba(255,180,84,.32);display:flex;gap:16px;align-items:center;text-align:left}
+  .corrupt .ic{font-size:26px;flex:0 0 auto}
+  .corrupt .t{font-size:14.5px;color:var(--muted)}
+  .corrupt .t b{color:var(--warn);font-weight:600}
+
+  .editor-tag{margin:22px auto 0;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.4px;color:var(--pink);padding:7px 16px;border-radius:99px;background:rgba(255,72,176,.08);border:1px solid rgba(255,72,176,.22)}
+
+  /* sections */
+  section{padding:54px 0;scroll-margin-top:74px}
+  .section-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .section-head .num{font-size:13px;font-weight:700;color:var(--pink);border:1px solid rgba(255,72,176,.3);border-radius:8px;padding:3px 9px}
+  h2{font-size:clamp(26px,4vw,36px);font-weight:750;letter-spacing:-.5px}
+  .section-lead{color:var(--muted);font-size:16px;max-width:720px;margin:10px 0 30px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .stat{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+  .stat::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:.8}
+  .stat .big{font-size:28px;font-weight:800;line-height:1.15;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+  .stat .lbl{font-size:14px;color:var(--muted)}
+  .stat .lbl b{color:var(--text);font-weight:600}
+
+  .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:26px 28px;margin-bottom:16px;transition:.25s}
+  .card:hover{border-color:rgba(167,107,255,.28);background:rgba(255,255,255,0.035)}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card h3 .ic{width:30px;height:30px;flex:0 0 30px;border-radius:9px;display:grid;place-items:center;background:rgba(139,92,255,.14);font-size:15px}
+  .card p{color:var(--muted);font-size:15.5px;margin-top:8px}
+  .card p b,.card li b{color:var(--text);font-weight:600}
+  .card a.ref{color:var(--violet);font-size:13px;text-decoration:none;border-bottom:1px dotted rgba(167,107,255,.4)}
+  .card a.ref:hover{color:var(--pink)}
+  .card .why{color:var(--text);font-size:15px;margin-top:12px;padding-left:14px;border-left:2px solid var(--magenta)}
+
+  ul.clean{list-style:none;margin-top:10px}
+  ul.clean li{position:relative;padding-left:24px;margin:9px 0;color:var(--muted);font-size:15.5px}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:99px;background:var(--grad)}
+
+  /* "if -> then" fix lines */
+  .fix{display:flex;gap:12px;margin:11px 0;font-size:15px;color:var(--muted)}
+  .fix .arrow{color:var(--pink);font-weight:700;flex:0 0 auto}
+  .fix b{color:var(--text);font-weight:600}
+
+  .label{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin:16px 0 4px}
+  .label.win{color:var(--good)}
+  .label.why{color:#ff6f93}
+  .label.fix{color:var(--violet)}
+
+  .batch-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+  @media(max-width:680px){.batch-cols{grid-template-columns:1fr}}
+
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.5px;padding:3px 10px;border-radius:99px;margin:2px 4px 2px 0}
+  .pill.good{background:rgba(51,214,166,.12);color:var(--good);border:1px solid rgba(51,214,166,.25)}
+  .pill.bad{background:rgba(255,72,120,.1);color:#ff6f93;border:1px solid rgba(255,72,120,.22)}
+  .pill.neutral{background:rgba(139,92,255,.1);color:var(--violet);border:1px solid rgba(139,92,255,.22)}
+  .pill.warn{background:rgba(255,180,84,.1);color:var(--warn);border:1px solid rgba(255,180,84,.25)}
+
+  /* ranked scroll-stopper / reference rows */
+  .stopper{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:13px;background:var(--card);border:1px solid var(--card-border);margin-bottom:10px;flex-wrap:wrap}
+  .stopper .rate{font-size:24px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;flex:0 0 88px;line-height:1}
+  .stopper .desc{flex:1 1 240px;font-size:15px;color:var(--muted)}
+  .stopper .desc b{color:var(--text)}
+  .stopper .desc .code{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.4px}
+  .stopper a{color:var(--violet);font-size:13px;text-decoration:none;white-space:nowrap;border-bottom:1px dotted rgba(167,107,255,.4)}
+  .stopper a:hover{color:var(--pink)}
+
+  /* action checklist */
+  .check{display:flex;gap:14px;padding:16px 18px;border-radius:13px;background:var(--card);border:1px solid var(--card-border);margin-bottom:10px;align-items:flex-start}
+  .check .box{width:22px;height:22px;flex:0 0 22px;border-radius:7px;margin-top:1px;border:1.5px solid var(--purple);background:rgba(139,92,255,.08)}
+  .check .ctxt{font-size:15.5px}
+  .check .ctxt b{color:var(--text)}
+  .check .owner{font-size:12px;font-weight:600;color:var(--pink);letter-spacing:.5px;text-transform:uppercase;margin-left:auto;white-space:nowrap;padding-left:12px}
+
+  /* philosophy / mantra banner */
+  .philosophy{position:relative;overflow:hidden;text-align:center;border-radius:22px;padding:48px 32px;background:linear-gradient(140deg,rgba(255,77,157,.1),rgba(123,92,255,.1));border:1px solid rgba(255,72,176,.24)}
+  .philosophy .q{font-size:clamp(24px,4.5vw,38px);font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:16px}
+  .philosophy .q .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .philosophy p{color:var(--muted);font-size:16px;max-width:560px;margin:6px auto 0}
+  .philosophy p b{color:var(--text)}
+
+  /* bonus / announcement banner */
+  .bonus{position:relative;overflow:hidden;text-align:center;border-radius:22px;padding:54px 32px;margin-top:8px;background:linear-gradient(140deg,rgba(255,77,157,.14),rgba(123,92,255,.14));border:1px solid rgba(255,72,176,.28);box-shadow:0 0 70px rgba(199,75,232,.16)}
+  .bonus .kicker{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:14px}
+  .bonus .amt{font-size:clamp(48px,9vw,86px);font-weight:850;line-height:1;letter-spacing:-2px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+  .bonus .for{font-size:20px;font-weight:700;color:var(--text);margin-bottom:14px}
+  .bonus p{color:var(--muted);font-size:15.5px;max-width:560px;margin:0 auto}
+  .bonus p b{color:var(--text)}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);margin:18px 0}
+  footer{padding:50px 0 80px;text-align:center;color:var(--faint);font-size:14px}
+  footer .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+  .note{font-size:13.5px;color:var(--faint);background:rgba(139,92,255,.05);border:1px dashed rgba(139,92,255,.2);border-radius:12px;padding:14px 18px;margin-top:14px}
+  .note b{color:var(--violet)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap">
+    <span class="brand">OVIA · <span class="dot">Learnings</span></span>
+    <a href="#patterns">Patterns</a>
+    <a href="#playbook">The winning flow</a>
+    <a href="#batches">Batch teardowns</a>
+    <a href="#concepts">Concepts</a>
+    <a href="#actions">Action Items</a>
+  </div>
+</nav>
+
+<!-- ============ [HERO] ============ -->
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Creative Strategy · Call #12</span>
+    <h1>Learnings Call #12</h1>
+    <p class="sub">Two breakthrough winners and two ads that never spent, and the difference between them came down to one thing: whether there was a single idea the viewer could point to.</p>
+    <p class="meta-row">4 batches reviewed · <b>CB25 + CB22 broke through</b> · #98 and #102 never got spend</p>
+
+    <div class="hero-btns">
+      <a class="btn primary" href="https://miro.com/app/board/uXjVH1umPtk=/" target="_blank" rel="noopener">🧩 Open the Miro board</a>
+    </div>
+
+    <div class="corrupt">
+      <span class="ic">🎥</span>
+      <span class="t"><b>No recording link yet.</b> The Loom for this call had not been posted when these notes went up — this page is written from the board and the full call transcript. It will be updated with the recording once the link exists.</span>
+    </div>
+
+    <span class="editor-tag">✂️ Built for editors — focused, do-this-now takeaways</span>
+  </div>
+</header>
+
+<!-- ============ [PHILOSOPHY] ============ -->
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="philosophy">
+      <div class="q">Promise the cravings are gone. <span class="grad">Let them do the rest of the math.</span></div>
+      <p>Every winner this call sold one simple promise and one simple mechanism. Every loser stacked several good ideas and left nothing to point at. <b>Simpler is not a compromise here — it is the thing that converts.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [STAT-CARDS] cross-batch patterns ============ -->
+<section id="patterns">
+  <div class="wrap">
+    <div class="section-head"><span class="num">01</span><h2>What showed up in all four batches</h2></div>
+    <p class="section-lead">The same three rules explain both wins and both losses. If you only take three things into this week's work, take these.</p>
+
+    <div class="cards">
+      <div class="stat">
+        <div class="big">ONE big idea</div>
+        <div class="lbl">Insulin resistance, strawberry acai + cravings, removing all hunger, or GLP-1 — <b>pick one and only one.</b> If it can't be said in a single phrase, it isn't ready.</div>
+      </div>
+      <div class="stat">
+        <div class="big">Cravings, not the visual before/after</div>
+        <div class="lbl">Promise <b>zero cravings</b>. The physical result belongs in the ad as proof, never as the lead claim — the moment you lead with it, belief collapses.</div>
+      </div>
+      <div class="stat">
+        <div class="big">SHOW the not-hungry reveal</div>
+        <div class="lbl">Don't say she isn't hungry — <b>put it on screen.</b> Refusing the drive-thru, pushing away the donut, turning down the turkey.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3><span class="ic">🎯</span>Why "cravings" out-converts "belly fat"</h3>
+      <p>Khush's teardown of batch #98, and it reframes everything else on this page.</p>
+      <ul class="clean">
+        <li><b>These women have already tried eating less.</b> Batch #98 essentially says eat less and the belly fat goes — which is the exact thing that has already failed them. Nothing new is revealed, so nothing is believed.</li>
+        <li><b>CB25 and CB22 stop at cravings.</b> They promise no cravings and nothing else. Women in their 50s and 60s still bought — because <i>they</i> complete the chain: no cravings → I eat less → I lose the weight.</li>
+        <li><b>A simple promise needs no complex mechanism.</b> Promise a physical change and the mechanism has to be sophisticated enough to carry it. Promise no cravings and one line of mechanism is plenty.</li>
+        <li><b>Cravings is a broader problem than belly fat.</b> Binge eaters, midnight snackers, women worried about blood sugar — all of them want the same thing.</li>
+      </ul>
+      <p class="why"><b>Careful:</b> the bigger desire is still the physical change. This is about what we <i>lead</i> with, not what we deliver.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🏷️</span>Name the mechanism so it can be pictured</h3>
+      <ul class="clean">
+        <li><b>"You lost the insulin sensitivity she has" is unvisualizable.</b> Batch #102's hook gave the viewer nothing to see, and there was nothing on screen helping either.</li>
+        <li><b>Compare "parasites."</b> One word and everyone pictures the worm. Same with "kneecap grinding," or the EMMA VSL's "you don't have constipation, you have poop paralysis."</li>
+        <li><b>Use the doctor/me split.</b> "Doctors call it insulin sensitivity, I call it this" — instantly separates us from the medical mumbo jumbo and signals I'm one of you.</li>
+        <li><b>Body-part language beats lab language.</b> Menopause belly reads; insulin resistance does not.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [CARD] the winning flow ============ -->
+<section id="playbook">
+  <div class="wrap">
+    <div class="section-head"><span class="num">02</span><h2>The winning flow</h2></div>
+    <p class="section-lead">CB25 and CB22 are different formats running the same skeleton. This is the structure to plug old batches into.</p>
+
+    <div class="card">
+      <h3><span class="ic">🧱</span>The three-step spine — SHOW → STARBUCKS → MECHANISM</h3>
+      <ul class="clean">
+        <li><b>1. Show it, or open on drama.</b> Either the not-hungry reveal on screen (CB22: turning down Chipotle and Bojangles) or a negative, ambiguous moment that pulls people in — the spiked drink, "my girlfriend is starving herself."</li>
+        <li><b>2. Make it familiar through Starbucks.</b> The drink is introduced as a strawberry acai refresher, mixed in a Starbucks cup. Familiar container, novel twist — not another berberine supplement, the first ever refresher that controls cravings.</li>
+        <li><b>3. Then, and only then, the mechanism.</b> One cause, stated simply. CB25 uses 5-HTP and serotonin and nothing else. The mechanism is only the justification for why the drink works — the taste and the ease do the selling.</li>
+      </ul>
+      <p class="why"><b>Leo:</b> swap the order of the mechanism and the Starbucks introduction and see what happens — if the "it's just a Starbucks drink" frame lands first, everything after it should feel easier to accept.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🧾</span>Proof first, and push it past "it worked"</h3>
+      <ul class="clean">
+        <li><b>CB25 leads with proof before the product exists in the ad.</b> "I literally have to force myself to eat after taking this." "I had to get my brother's wedding dress altered because it's now too big on me — but it fit two weeks ago."</li>
+        <li><b>The technique is "it worked too well."</b> Not the product worked — the product worked so well it caused a problem. Think of the worst thing that could happen if you stopped eating, then tune it back to the sweet spot.</li>
+        <li><b>Contrast the pain with the ease at the end.</b> CB25 twists the knife — insecure in a bikini this summer — and then answers it with a packet in her purse. The gap between those two is what pushes the buy.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🔍</span>Build sub-avatars from the problem, not the demographic</h3>
+      <ul class="clean">
+        <li><b>Start with the problem.</b> Search binge eating, binge eating disorder, emotional eater. Read the threads. The sub-avatars surface on their own — women in their 50s and women in their 20s saying the same thing.</li>
+        <li><b>Don't research with the avatar already in mind.</b> Deciding on "gym girl" and then looking up gym girls only confirms what you already assumed.</li>
+        <li><b>Keep it broad.</b> The problem is the same across ages; what changes is how it shows up. A 20-year-old wants to look good for her boyfriend, a 50-year-old cares about blood sugar and diabetes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [BATCH-CARD] teardowns ============ -->
+<section id="batches">
+  <div class="wrap">
+    <div class="section-head"><span class="num">03</span><h2>Batch teardowns</h2></div>
+    <p class="section-lead">Two losers first, because they diagnose the winners. Both losers ran on small spend — treat the numbers as directional.</p>
+
+    <div class="card">
+      <h3><span class="ic">🧩</span>Batch #98 — Thanking The Woman That Showed OVIA <span class="pill bad">low spend</span> <span class="pill neutral">iteration of CB27-C</span></h3>
+      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/eb23f152-3162-4f16-8aea-261bce7887ad" target="_blank" rel="noopener">Frame.io ↗</a>
+      <p><b>Hypothesis:</b> CB27-C was getting a lot of spend but was badly executed from a DR point of view — soft metrics solid, CVR low. Take the same idea and raise belief with a coherent mechanism without overcomplicating it.</p>
+      <div class="batch-cols">
+        <div>
+          <div class="label why">What went wrong</div>
+          <ul class="clean">
+            <li><b>The mechanism became a mix of everything.</b> A bit of each idea, nothing singular to point at — the hypothesis was not confirmed.</li>
+            <li><b>Good hook rate and good CTR, not enough sales.</b> A belief problem, not an attention problem: they watch, they click, they don't buy.</li>
+            <li><b>It promises the visual result.</b> The first frame is a flat stomach, so we're claiming belly fat gone — the claim these women have already watched fail.</li>
+            <li><b>It never shows the not-hungry reveal.</b> The idea is stated, never depicted.</li>
+            <li><b>The original won on something this one dropped.</b> CB27-C leaned hard on the GLP-1 comparison, which borrowed authority instantly.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label win">What to keep</div>
+          <ul class="clean">
+            <li><b>The older-audience targeting.</b> It was one of our first ads pointed at the older avatar and the direction still looks right.</li>
+            <li><b>The strawberry refresher comparison.</b> Ease and familiarity is the reason the original converted.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Rebuild it on the insulin mechanism, kept plain.</b> <span style="color:var(--faint)">"Your food is just being stored as fat, that's why the weight sits on your belly and you're exhausted" — then confirm with symptoms. Don't lecture insulin resistance.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Rewrite in 50-year-old language.</b> <span style="color:var(--faint)">Swap the young-audience references — TikTok becomes a Facebook group.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Add a pain-initiation beat.</b> <span style="color:var(--faint)">Cravings on its own may not carry enough pain unless she already feels guilt about it.</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🧩</span>Batch #102 — "they're just doing X" <span class="pill bad">low spend</span> <span class="pill warn">lost in the first 15s</span></h3>
+      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/db0634f6-6263-4800-bce1-acb3e0bb8459" target="_blank" rel="noopener">Frame.io ↗</a>
+      <p><b>Hypothesis:</b> mirror the skincare TikTok where she names the viewer's insecurity, tells her the prettier women simply don't have problem X, and then explains it. Our version swaps in insulin sensitivity.</p>
+      <div class="batch-cols">
+        <div>
+          <div class="label why">What went wrong</div>
+          <ul class="clean">
+            <li><b>The hook can't be pictured.</b> "You lost the insulin sensitivity she has" — you can't visualize it, and nothing on screen helps you.</li>
+            <li><b>The root cause is too complex.</b> The inspiration used something anyone can see on a face; we used a metabolic term menopausal women don't know.</li>
+            <li><b>The knife is never twisted.</b> We don't earn the next 15 seconds, so Meta never gives it spend.</li>
+            <li><b>It points at a problem, not a root cause.</b> And it's stated flatly — no emotion anywhere in the read or the copy.</li>
+            <li><b>The VO is monotone.</b> Next to CB25, where the voice lifts and drops, both the hook rate and the hold rate suffer.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label win">What to keep</div>
+          <ul class="clean">
+            <li><b>The "she's not better than you, she just doesn't have X" frame.</b> The imported structure is sound — the fill-in was wrong.</li>
+            <li><b>The practitioner authority beat.</b> "My menopause practitioner exposed that 82% of women over 40 secretly develop…" is a workable statistic-that-flips-it moment.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Rename the root cause.</b> <span style="color:var(--faint)">Something visual and instantly understandable, in the poop-paralysis mould, plus B-roll that shows it.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Restructure the open.</b> <span style="color:var(--faint)">Tease the root cause → name the solutions she already tried, with symptoms → the statistic that flips it → more symptoms to confirm. The parasite playbook.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Test a symptoms callout into insulin.</b> <span style="color:var(--faint)">Lead with a symptom she already has, then funnel back to insulin as the cause.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Cut a Pixar-style side animation.</b> <span style="color:var(--faint)">Half the screen: food goes down the food pipe and turns into fat. Comprehension speed is the whole point.</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🏆</span>CB25 — Binge Eater Hack <span class="pill good">breakthrough winner</span> <span class="pill neutral">old ad account</span></h3>
+      <a class="ref" href="https://app.tryatria.com/ad/m1281075414128527" target="_blank" rel="noopener">Atria ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label win">Why it won</div>
+          <ul class="clean">
+            <li><b>It promises cravings gone and nothing else.</b> No weight-loss claim, no visual before/after as the lead — and women over 50 and 60 still bought.</li>
+            <li><b>One mechanism only.</b> 5-HTP and serotonin as the single root cause. No bouncing between GLP-1, yerba mate and everything else.</li>
+            <li><b>Proof before product.</b> Forcing herself to eat, the wedding dress altered — and the "it fit two weeks ago" line that makes it land.</li>
+            <li><b>The drink arrives as a Starbucks refresher.</b> "Just grab a little Starbucks water… my fun little pinkity drinkity."</li>
+            <li><b>Pain contrasted with ease at the end.</b> Insecure in a bikini this summer, versus a packet in her purse.</li>
+            <li><b>Its own name for the problem.</b> "An emotional snacker" — we can't call women out for snacking directly without offending them, but framed this way they recognise themselves.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label why">What to fix</div>
+          <ul class="clean">
+            <li><b>She opens holding the product.</b> Our ads have never posted a strong hook rate when they start on the product — people see it and know they're about to be sold to.</li>
+            <li><b>It tells the not-hungry reveal instead of showing it.</b> No visual of her refusing food anywhere.</li>
+            <li><b>The cast skews young</b> for the avatar that's actually buying.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>New hook with no product jar in the opening.</b> <span style="color:var(--faint)">Cheapest fix available, already in progress.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Exaggerate the results.</b> <span style="color:var(--faint)">"I had to stop drinking this, I was losing too much weight." "My mom started calling me sticks." Or the ER version.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Horizontally scale by avatar.</b> <span style="color:var(--faint)">Same script for a gym girl and for a menopausal woman, wording made congruent to each.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Plug the structure into old batches.</b> <span style="color:var(--faint)">Batch 42 has a near-identical skeleton — and its iterations may have failed because each one added more instead of taking things out.</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🏆</span>CB22 — Girlfriend Starving Herself <span class="pill good">breakthrough winner</span> <span class="pill neutral">skit</span></h3>
+      <a class="ref" href="https://app.tryatria.com/ad/m4330438327209514" target="_blank" rel="noopener">Atria ↗</a>
+      <div class="batch-cols">
+        <div>
+          <div class="label win">Why it won</div>
+          <ul class="clean">
+            <li><b>It opens on something that looks bad.</b> "My girlfriend is starving herself" — the same negative framing as the spiked-drink ad. You're pulled in before you know what this is.</li>
+            <li><b>It shows the not-hungry reveal.</b> She turns down Chipotle, turns down Bojangles, and the boyfriend confronts her about it.</li>
+            <li><b>The contradiction is stated out loud.</b> "You're literally drinking that sugary ass drink, but you never want to eat anymore." Polar opposites, set up in the first seconds.</li>
+            <li><b>She names it herself.</b> "This is literally my craving control" — not the product name, not "a drink."</li>
+            <li><b>One problem, one mechanism, no complexity.</b> Same spine as CB25 in a completely different format.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label win">What to test next</div>
+          <ul class="clean">
+            <li><b>No major weaknesses.</b> This one is about finding more ways to run the same spine, not repairing it.</li>
+            <li><b>The mechanism is probably swappable.</b> Serotonin to GLP-1 activation would likely still work — the intro sequence, the drama and the showing are what carry it.</li>
+          </ul>
+          <div class="label fix">Iterate</div>
+          <div class="fix"><span class="arrow">→</span><div><b>Make the cast older.</b> <span style="color:var(--faint)">Same beats, older people, different locations.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Find new ways to refuse food.</b> <span style="color:var(--faint)">A family gathering where she won't eat with his family is the obvious next one.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Turn the skit into a story.</b> <span style="color:var(--faint)">Add the pain before and the thing that happened in the middle, so it plays like something you watch rather than something you're sold.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [CARD] concepts ============ -->
+<section id="concepts">
+  <div class="wrap">
+    <div class="section-head"><span class="num">04</span><h2>Concepts to iterate</h2></div>
+    <p class="section-lead">Everything agreed on the call, grouped by where it came from. Unclaimed ones are up for grabs.</p>
+
+    <div class="card">
+      <h3><span class="ic">🥤</span>Off CB22 — drama first, then the reveal</h3>
+      <ul class="clean">
+        <li><b>Indecisive girlfriend.</b> He hands her the drink before they pick a restaurant, and suddenly she doesn't want to go anywhere.</li>
+        <li><b>Girlfriend craves junk food.</b> He spikes her drink in the car on the way, and she has no appetite by the time they sit down.</li>
+        <li><b>Thanksgiving.</b> Grandma's drink gets spiked, the turkey comes out, grandma wants none of it.</li>
+        <li><b>The wedding.</b> The bride's drink gets spiked and she won't eat her own cake.</li>
+        <li><b>Ex-husband spikes her drink</b> at the wedding — same beat, maximum controversy.</li>
+        <li><b>Girlfriend loves eating out, boyfriend never joins her.</b></li>
+        <li><b>Family gathering.</b> She won't eat with his family and it becomes a scene — then it turns out she's just drinking this.</li>
+        <li><b>Boyfriend secretly drinking her pink drink</b> and not understanding why he isn't hungry. Claimed — Mei, in progress, coupled with the Nana character. <a class="ref" href="https://www.facebook.com/61579184211123/posts/122156834918972807/" target="_blank" rel="noopener">Reference ad ↗</a></li>
+      </ul>
+      <p class="why"><b>Keep the spiking ambiguous.</b> Never explain at the start why the drink is being spiked — prank or kindness. Not knowing is the curiosity that holds them.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">📋</span>Off the other three batches</h3>
+      <ul class="clean">
+        <li><b>#98 — insulin rewrite.</b> One plain mechanism, confirmed with symptoms. Claimed — Khush, with Leo.</li>
+        <li><b>#98 — 50-year-old language pass.</b> Claimed — Mei.</li>
+        <li><b>#102 — renamed root cause,</b> something you can picture and feel, plus the B-roll that shows it.</li>
+        <li><b>#102 — parasite-playbook restructure</b> of the opening sequence.</li>
+        <li><b>#102 — symptoms callout</b> leading into insulin.</li>
+        <li><b>CB25 — new hook, no product jar in the opening.</b> Claimed — Mei.</li>
+        <li><b>CB25 — "worked too well" proof variants</b> and the avatar-by-avatar horizontal scale.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ [CHECKLIST] ============ -->
+<section id="actions">
+  <div class="wrap">
+    <div class="section-head"><span class="num">05</span><h2>Action items</h2></div>
+    <p class="section-lead">If you read one section, read this.</p>
+
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Write the #98 insulin iteration.</b> Plain-language mechanism, symptoms rather than explanation. Expected to run 2:30–3:00 — back and forth with Leo before it ships.</div><div class="owner">Khush</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Build the breakthrough-ads doc.</b> Every winner, broken into the reusable "Lego pieces" we can drop into new scripts to raise the hit rate.</div><div class="owner">Khush</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Send Khush the winning-ad transcripts.</b> Already pulled — the raw material for the Lego-pieces doc.</div><div class="owner">Mei</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Ship the three iterations in flight.</b> #98 in 50-year-old language, CB25 with a new hook and no product jar, and the boyfriend-secretly-drinking concept with the Nana character.</div><div class="owner">Mei</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Find the new name for insulin resistance.</b> Brainstorm with AI until it's visual and instantly understandable — cells starving, food stored as fat, something you can see.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Build a better system for tracking iterations</b> — which batches we've already iterated on, and what came of them.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Check the post-purchase survey on the 60–70 avatar.</b> A large share of buyers on the new ads are past menopausal age, which may be the easiest avatar to sell with the ideas we have now.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Sort out the Kie.ai output quality.</b> Images come out soft and the video generated from them breaks down — Higgsfield and the Google Flow path were both raised as alternatives.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Try the Pixar-style insulin B-roll.</b> Side-view animation of food travelling down and turning into fat, on half the screen.</div><div class="owner">Utkarsh</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Think about turning our skits into stories.</b> Standing question for every strategist, not a one-week task.</div><div class="owner">All CS</div></div>
+
+    <div class="note"><b>Editors, the one rule for iterating old ad-account content:</b> do not reuse the same characters, the same creator or the same backgrounds. Keeping it 1:1 is the fastest way to fatigue an ad, and Meta reads it as something the pixel has already run and stops spending on it. Change the visuals completely.</div>
+  </div>
+</section>
+
+<!-- ============ [FOOTER] ============ -->
+<footer>
+  <div class="wrap">
+    <p class="grad">Learnings Call #12</p>
+    <p style="margin-top:6px">One idea they can point to, shown rather than said, wrapped in something they already recognise.</p>
+  </div>
+</footer>
+
+</body>
+</html>
