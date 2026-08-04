@@ -4,6 +4,36 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Learnings Call #12 — Creative Strategy</title>
+<!--
+  OVIA LEARNINGS-CALL DESIGN SYSTEM
+  Black + pink/purple neon brand. Self-contained single HTML file (no external assets,
+  no build step) so it hosts anywhere (Netlify Drop / GitHub / Cloudflare Pages).
+
+  HOW TO USE THIS TEMPLATE:
+  - Keep the entire <style> block verbatim — it is the shared visual identity across all
+    learnings pages. Do NOT restyle per-call; consistency is the point.
+  - Build the <body> by copying the component blocks you need (below) and filling them
+    with this call's content. Delete the components you don't use.
+  - Every section gets a number (01, 02, …) and a nav anchor. Order sections by value to
+    the audience (usually editors): put the cross-cutting patterns / most actionable
+    takeaways FIRST, batch-by-batch teardowns after.
+
+  COMPONENT INDEX (search these tags in the body below):
+    [HERO]              title + subhead + meta line
+    [HERO-BUTTONS]      Miro board / Loom buttons (optional)
+    [LOOM]              embedded Loom player (use when a recording exists)
+    [CORRUPT-NOTE]      amber "recording corrupted" note (use INSTEAD of [LOOM] when none)
+    [EDITOR-TAG]        "built for editors" pill (optional)
+    [PHILOSOPHY]        big centered quote/mantra banner
+    [STAT-CARDS]        3-up row of headline numbers or principles
+    [CARD]              generic titled card with bullets / prose
+    [BATCH-CARD]        two-column "what went wrong / what to keep" teardown
+    [STOPPER-ROW]       ranked list row (hook rate + description + link)
+    [FIX-LINES]         "if we change X → Y, because Z" lines
+    [CHECKLIST]         action items with owners
+    [BONUS-BANNER]      big gradient callout (announcements, e.g. a bonus)
+    [FOOTER]
+-->
 <style>
   :root{
     --bg:#070608;
@@ -162,25 +192,23 @@
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
 <nav>
   <div class="wrap">
     <span class="brand">OVIA · <span class="dot">Learnings</span></span>
     <a href="#patterns">Patterns</a>
-    <a href="#playbook">The winning flow</a>
-    <a href="#batches">Batch teardowns</a>
+    <a href="#playbook">The Playbook</a>
+    <a href="#batches">Batches</a>
     <a href="#concepts">Concepts</a>
     <a href="#actions">Action Items</a>
   </div>
 </nav>
 
-<!-- ============ [HERO] ============ -->
 <header>
   <div class="wrap">
     <span class="eyebrow">Creative Strategy · Call #12</span>
     <h1>Learnings Call #12</h1>
-    <p class="sub">Two breakthrough winners and two ads that never spent, and the difference between them came down to one thing: whether there was a single idea the viewer could point to.</p>
-    <p class="meta-row">4 batches reviewed · <b>CB25 + CB22 broke through</b> · #98 and #102 never got spend</p>
+    <p class="sub">Two winners and two losers, and the gap between them came down to one thing: whether a prospect could point at a single idea and say "that's what this is."</p>
+    <p class="meta-row">4 batches reviewed · <b>Batch#98 &amp; Batch#102 lost</b> · CB25 &amp; CB22 are the breakthrough winners</p>
 
     <div class="hero-btns">
       <a class="btn primary" href="https://miro.com/app/board/uXjVH1umPtk=/" target="_blank" rel="noopener">🧩 Open the Miro board</a>
@@ -188,292 +216,308 @@
 
     <div class="corrupt">
       <span class="ic">🎥</span>
-      <span class="t"><b>No recording link yet.</b> The Loom for this call had not been posted when these notes went up — this page is written from the board and the full call transcript. It will be updated with the recording once the link exists.</span>
+      <span class="t"><b>No Loom link yet.</b> The recording had not been posted at the end of the call, so there is nothing to embed here. This page is written from the full transcript plus the Miro board — it stands on its own, and the Loom can be dropped in later.</span>
     </div>
 
     <span class="editor-tag">✂️ Built for editors — focused, do-this-now takeaways</span>
   </div>
 </header>
 
-<!-- ============ [PHILOSOPHY] ============ -->
 <section style="padding-top:30px">
   <div class="wrap">
     <div class="philosophy">
-      <div class="q">Promise the cravings are gone. <span class="grad">Let them do the rest of the math.</span></div>
-      <p>Every winner this call sold one simple promise and one simple mechanism. Every loser stacked several good ideas and left nothing to point at. <b>Simpler is not a compromise here — it is the thing that converts.</b></p>
+      <div class="q">One problem. One mechanism. <span class="grad">And show it on screen.</span></div>
+      <p>Both winners this week do almost nothing else. Both losers stacked ideas until there was nothing left to point at. <b>The ads that are working are almost anti-creative-strategy — they refuse to be clever.</b></p>
     </div>
   </div>
 </section>
 
-<!-- ============ [STAT-CARDS] cross-batch patterns ============ -->
 <section id="patterns">
   <div class="wrap">
-    <div class="section-head"><span class="num">01</span><h2>What showed up in all four batches</h2></div>
-    <p class="section-lead">The same three rules explain both wins and both losses. If you only take three things into this week's work, take these.</p>
+    <div class="section-head"><span class="num">01</span><h2>The three rules that decided this call</h2></div>
+    <p class="section-lead">These showed up in every single batch — twice as the reason a winner won, twice as the reason a loser lost.</p>
 
     <div class="cards">
       <div class="stat">
-        <div class="big">ONE big idea</div>
-        <div class="lbl">Insulin resistance, strawberry acai + cravings, removing all hunger, or GLP-1 — <b>pick one and only one.</b> If it can't be said in a single phrase, it isn't ready.</div>
+        <div class="big">One big idea<br>you can point at</div>
+        <div class="lbl">Batch#98 had insulin, GLP-1, serotonin and cravings all in the same ad. <b>Nothing was strong enough to point to</b> — and that is exactly where the belief gap opened up.</div>
       </div>
       <div class="stat">
-        <div class="big">Cravings, not the visual before/after</div>
-        <div class="lbl">Promise <b>zero cravings</b>. The physical result belongs in the ad as proof, never as the lead claim — the moment you lead with it, belief collapses.</div>
+        <div class="big">Promise cravings,<br>not the body</div>
+        <div class="lbl">CB25 and CB22 stop at "your cravings will be gone" and women over 50 still buy. <b>The prospect does the rest of the math herself.</b></div>
       </div>
       <div class="stat">
-        <div class="big">SHOW the not-hungry reveal</div>
-        <div class="lbl">Don't say she isn't hungry — <b>put it on screen.</b> Refusing the drive-thru, pushing away the donut, turning down the turkey.</div>
+        <div class="big">Show it,<br>don't say it</div>
+        <div class="lbl">The two top spenders, batch #88 and batch #100, do little more than <b>show somebody physically refusing food.</b></div>
       </div>
     </div>
 
     <div class="card" style="margin-top:16px">
-      <h3><span class="ic">🎯</span>Why "cravings" out-converts "belly fat"</h3>
-      <p>Khush's teardown of batch #98, and it reframes everything else on this page.</p>
+      <h3><span class="ic">🎯</span>Why "cravings" outperforms "belly fat"</h3>
+      <p>This was the sharpest insight of the call, and it explains the whole win/lose split.</p>
       <ul class="clean">
-        <li><b>These women have already tried eating less.</b> Batch #98 essentially says eat less and the belly fat goes — which is the exact thing that has already failed them. Nothing new is revealed, so nothing is believed.</li>
-        <li><b>CB25 and CB22 stop at cravings.</b> They promise no cravings and nothing else. Women in their 50s and 60s still bought — because <i>they</i> complete the chain: no cravings → I eat less → I lose the weight.</li>
-        <li><b>A simple promise needs no complex mechanism.</b> Promise a physical change and the mechanism has to be sophisticated enough to carry it. Promise no cravings and one line of mechanism is plenty.</li>
-        <li><b>Cravings is a broader problem than belly fat.</b> Binge eaters, midnight snackers, women worried about blood sugar — all of them want the same thing.</li>
+        <li><b>These women have already tried eating less.</b> They are 50+, they have starved themselves, and it did not burn the belly fat. So an ad that says "I have to remind myself to eat" and then promises a flat stomach is repeating the thing that already failed them.</li>
+        <li><b>Batch#98 opens on a flat stomach.</b> The very first visual promises a visual before/after. That is a claim they have heard from every brand and disbelieved from every brand.</li>
+        <li><b>The winners promise only zero cravings.</b> No weight-loss claim, no body claim. And it works on women over 50 and over 60 anyway — because <em>they</em> complete the chain: no cravings → I eat less → I lose it.</li>
       </ul>
-      <p class="why"><b>Careful:</b> the bigger desire is still the physical change. This is about what we <i>lead</i> with, not what we deliver.</p>
+      <p class="why"><b>The rule:</b> cravings and hunger are the only thing we promise in the lead. Physical results still appear — but as <b>proof after the promise</b>, never as the claim we hammer.</p>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🏷️</span>Name the mechanism so it can be pictured</h3>
+      <h3><span class="ic">🧠</span>If they can't picture it, it isn't a mechanism</h3>
+      <p>Batch#102's hook was <em>"you lost the insulin sensitivity she has."</em> Nobody on the call could visualize it, and there was nothing on screen to help.</p>
       <ul class="clean">
-        <li><b>"You lost the insulin sensitivity she has" is unvisualizable.</b> Batch #102's hook gave the viewer nothing to see, and there was nothing on screen helping either.</li>
-        <li><b>Compare "parasites."</b> One word and everyone pictures the worm. Same with "kneecap grinding," or the EMMA VSL's "you don't have constipation, you have poop paralysis."</li>
-        <li><b>Use the doctor/me split.</b> "Doctors call it insulin sensitivity, I call it this" — instantly separates us from the medical mumbo jumbo and signals I'm one of you.</li>
-        <li><b>Body-part language beats lab language.</b> Menopause belly reads; insulin resistance does not.</li>
+        <li><b>Compare it to what works.</b> "Kneecap grinding." "Parasites." Emma's "poop paralysis." One phrase and you both see it and feel it.</li>
+        <li><b>The audience is barely aware anyway.</b> Roughly a quarter of buyers have even heard of insulin resistance, per the post-purchase survey.</li>
+        <li><b>The fix is a rename, not an explanation.</b> Something like "menopause belly" — a body part, plainly named, that a 55-year-old recognizes instantly.</li>
+        <li><b>Khush's framing:</b> "Doctors call it insulin sensitivity. I call it ___." It signals you are one of them rather than a medical lecture.</li>
       </ul>
+      <p class="why"><b>The test:</b> if you can't picture it while reading it, rename it before it ships.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ [CARD] the winning flow ============ -->
 <section id="playbook">
   <div class="wrap">
-    <div class="section-head"><span class="num">02</span><h2>The winning flow</h2></div>
-    <p class="section-lead">CB25 and CB22 are different formats running the same skeleton. This is the structure to plug old batches into.</p>
+    <div class="section-head"><span class="num">02</span><h2>The winning structure: SHOW → STARBUCKS → MECHANISM</h2></div>
+    <p class="section-lead">Both winners run the same three beats in the same order. This is the skeleton to reuse.</p>
 
     <div class="card">
-      <h3><span class="ic">🧱</span>The three-step spine — SHOW → STARBUCKS → MECHANISM</h3>
-      <ul class="clean">
-        <li><b>1. Show it, or open on drama.</b> Either the not-hungry reveal on screen (CB22: turning down Chipotle and Bojangles) or a negative, ambiguous moment that pulls people in — the spiked drink, "my girlfriend is starving herself."</li>
-        <li><b>2. Make it familiar through Starbucks.</b> The drink is introduced as a strawberry acai refresher, mixed in a Starbucks cup. Familiar container, novel twist — not another berberine supplement, the first ever refresher that controls cravings.</li>
-        <li><b>3. Then, and only then, the mechanism.</b> One cause, stated simply. CB25 uses 5-HTP and serotonin and nothing else. The mechanism is only the justification for why the drink works — the taste and the ease do the selling.</li>
-      </ul>
-      <p class="why"><b>Leo:</b> swap the order of the mechanism and the Starbucks introduction and see what happens — if the "it's just a Starbucks drink" frame lands first, everything after it should feel easier to accept.</p>
+      <h3><span class="ic">1️⃣</span>SHOW the not-hungry reveal</h3>
+      <p>Open on the character <b>physically refusing food</b> — saying no to Chipotle, no to Bojangles, pushing away a donut. Not narrating it. Doing it, on camera.</p>
+      <div class="fix"><span class="arrow">→</span><div><b>Batch#98 never shows it.</b> <span style="color:var(--faint)">It only says she isn't hungry — which is precisely the claim they don't believe.</span></div></div>
+      <div class="fix"><span class="arrow">→</span><div><b>Bake it into the script too.</b> <span style="color:var(--faint)">"Look, I don't even want this donut. That's how well this works."</span></div></div>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🧾</span>Proof first, and push it past "it worked"</h3>
+      <h3><span class="ic">2️⃣</span>Introduce it through the Starbucks cup</h3>
+      <p>This is the beat the team keeps underrating. <b>Ease was the most common reason buyers gave in the post-purchase survey</b> — it tastes like a Starbucks drink, so trying it feels like nothing.</p>
       <ul class="clean">
-        <li><b>CB25 leads with proof before the product exists in the ad.</b> "I literally have to force myself to eat after taking this." "I had to get my brother's wedding dress altered because it's now too big on me — but it fit two weeks ago."</li>
-        <li><b>The technique is "it worked too well."</b> Not the product worked — the product worked so well it caused a problem. Think of the worst thing that could happen if you stopped eating, then tune it back to the sweet spot.</li>
-        <li><b>Contrast the pain with the ease at the end.</b> CB25 twists the knife — insecure in a bikini this summer — and then answers it with a packet in her purse. The gap between those two is what pushes the buy.</li>
+        <li><b>It creates a category of one.</b> Another berberine supplement competes with a sophisticated market. The first-ever strawberry refresher that kills cravings competes with nobody.</li>
+        <li><b>Familiar plus novel.</b> Even a 65-year-old who has never ordered one has heard of it — the ad borrows the familiarity and the craving twist supplies the novelty.</li>
+        <li><b>It conceals the sell.</b> It doesn't read as being sold to; it reads as a drink you already know that happens to do something new.</li>
       </ul>
+      <p class="why"><b>Editors:</b> use real Starbucks cups. A pink Starbucks cup in frame, or a Starbucks water cup they mix the packet into. Seeing it does more than saying it.</p>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🔍</span>Build sub-avatars from the problem, not the demographic</h3>
+      <h3><span class="ic">3️⃣</span>Keep the mechanism stupid simple</h3>
+      <p>In CB25 the mechanism is one ingredient — 5-HTP and serotonin — and nothing else. No bouncing between GLP-1, yerba mate and insulin.</p>
+      <div class="fix"><span class="arrow">→</span><div><b>The mechanism is a justification, not the pitch.</b> <span style="color:var(--faint)">It exists only to explain why the product works at all. The taste and the ease do the actual selling.</span></div></div>
+      <div class="fix"><span class="arrow">→</span><div><b>Leo's open experiment:</b> <span style="color:var(--faint)">swap the order — Starbucks intro first, mechanism after — and see whether framing everything as "just a Starbucks drink" lifts conversion.</span></div></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🎭</span>The fourth beat nobody named: open on drama</h3>
+      <p>Both winners start somewhere <b>inherently negative</b>, and that is what pulls people in.</p>
       <ul class="clean">
-        <li><b>Start with the problem.</b> Search binge eating, binge eating disorder, emotional eater. Read the threads. The sub-avatars surface on their own — women in their 50s and women in their 20s saying the same thing.</li>
-        <li><b>Don't research with the avatar already in mind.</b> Deciding on "gym girl" and then looking up gym girls only confirms what you already assumed.</li>
-        <li><b>Keep it broad.</b> The problem is the same across ages; what changes is how it shows up. A 20-year-old wants to look good for her boyfriend, a 50-year-old cares about blood sugar and diabetes.</li>
+        <li><b>CB22 opens on an accusation</b> — "my girlfriend is starving herself" — and the boyfriend's line does the heavy lifting: <em>"you're literally drinking that sugary ass drink, but you never want to eat anymore."</em> Two polar opposites in one sentence.</li>
+        <li><b>The spiking concept works the same way.</b> Spiking someone's drink reads as a bad thing. You don't explain why — the ambiguity is the curiosity.</li>
+        <li><b>Then it names itself in plain language:</b> "this is literally my craving control." Not the product name. Not "a supplement." A name she made up that says what it does.</li>
       </ul>
+      <p class="why"><b>The long-term ask, from Leo, for every creative strategist:</b> can we turn our skits into stories? Put the pain before it and the fallout in the middle. The brands printing right now don't feel like ads — they feel like stories you're already inside.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🔬</span>How to build sub-avatars (Khush)</h3>
+      <p>Worth its own block because the team was about to do it backwards.</p>
+      <div class="fix"><span class="arrow">→</span><div><b>Don't start with the avatar.</b> <span style="color:var(--faint)">Searching "gym girls" and "menopausal women" on Reddit just confirms the avatar you already picked. That's confirmation bias.</span></div></div>
+      <div class="fix"><span class="arrow">→</span><div><b>Start with the problem.</b> <span style="color:var(--faint)">Search binge eating, binge eating disorder, emotional eater. Read the threads. The sub-avatars surface on their own — women in their 50s and women in their 20s saying the same thing.</span></div></div>
+      <div class="fix"><span class="arrow">→</span><div><b>Stay broad.</b> <span style="color:var(--faint)">The problem is constant; only how it manifests changes. A 20-year-old wants to look good for her boyfriend. A 50-year-old cares about blood sugar and diabetes.</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ [BATCH-CARD] teardowns ============ -->
 <section id="batches">
   <div class="wrap">
     <div class="section-head"><span class="num">03</span><h2>Batch teardowns</h2></div>
-    <p class="section-lead">Two losers first, because they diagnose the winners. Both losers ran on small spend — treat the numbers as directional.</p>
+    <p class="section-lead">Two losers first, because they define the problem — then the two winners that solve it. Spend on the losers was low, so treat the numbers as directional rather than conclusive.</p>
 
     <div class="card">
-      <h3><span class="ic">🧩</span>Batch #98 — Thanking The Woman That Showed OVIA <span class="pill bad">low spend</span> <span class="pill neutral">iteration of CB27-C</span></h3>
-      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/eb23f152-3162-4f16-8aea-261bce7887ad" target="_blank" rel="noopener">Frame.io ↗</a>
-      <p><b>Hypothesis:</b> CB27-C was getting a lot of spend but was badly executed from a DR point of view — soft metrics solid, CVR low. Take the same idea and raise belief with a coherent mechanism without overcomplicating it.</p>
+      <h3><span class="ic">🧩</span>Batch#98 — iteration of CB27-C <span class="pill bad">lost</span> <span class="pill neutral">~$70 over ~10 days</span> <span class="pill warn">high hook rate, high CTR, no sales</span></h3>
       <div class="batch-cols">
         <div>
           <div class="label why">What went wrong</div>
           <ul class="clean">
-            <li><b>The mechanism became a mix of everything.</b> A bit of each idea, nothing singular to point at — the hypothesis was not confirmed.</li>
-            <li><b>Good hook rate and good CTR, not enough sales.</b> A belief problem, not an attention problem: they watch, they click, they don't buy.</li>
-            <li><b>It promises the visual result.</b> The first frame is a flat stomach, so we're claiming belly fat gone — the claim these women have already watched fail.</li>
-            <li><b>It never shows the not-hungry reveal.</b> The idea is stated, never depicted.</li>
-            <li><b>The original won on something this one dropped.</b> CB27-C leaned hard on the GLP-1 comparison, which borrowed authority instantly.</li>
+            <li><b>A conversion problem, not an attention problem.</b> Hook rate and CTR were both strong. They clicked through the listicle, reached the product page, and didn't buy — which means belief, not interest.</li>
+            <li><b>No single big idea.</b> Little bits of insulin, GLP-1, serotonin and cravings, none strong enough to point at. The "coherent mechanism" ended up being a mix of everything.</li>
+            <li><b>It promised the body, not the cravings.</b> First visual is a flat stomach. To a 50+ woman who has already starved herself, that is the claim that already failed.</li>
+            <li><b>It never shows the not-hungry reveal.</b> It states it and moves on.</li>
           </ul>
         </div>
         <div>
           <div class="label win">What to keep</div>
           <ul class="clean">
-            <li><b>The older-audience targeting.</b> It was one of our first ads pointed at the older avatar and the direction still looks right.</li>
-            <li><b>The strawberry refresher comparison.</b> Ease and familiarity is the reason the original converted.</li>
+            <li><b>The original's GLP-1 comparison.</b> That is what gave the parent ad authority with the older audience in the first place.</li>
+            <li><b>The dress-too-small proof beat</b> — it's the same device CB25 uses, and there it works.</li>
           </ul>
           <div class="label fix">Iterate</div>
-          <div class="fix"><span class="arrow">→</span><div><b>Rebuild it on the insulin mechanism, kept plain.</b> <span style="color:var(--faint)">"Your food is just being stored as fat, that's why the weight sits on your belly and you're exhausted" — then confirm with symptoms. Don't lecture insulin resistance.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Rewrite in 50-year-old language.</b> <span style="color:var(--faint)">Swap the young-audience references — TikTok becomes a Facebook group.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Add a pain-initiation beat.</b> <span style="color:var(--faint)">Cravings on its own may not carry enough pain unless she already feels guilt about it.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Test the insulin mechanism — but don't name it.</b> <span style="color:var(--faint)">"Your food is being stored as fat, and that's why you're exhausted." Then confirm with symptoms. Previous insulin ads failed because the explanation got complicated.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Rewrite in 50-year-old register.</b> <span style="color:var(--faint)">Facebook group instead of TikTok. Mei has one running.</span></div></div>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🧩</span>Batch #102 — "they're just doing X" <span class="pill bad">low spend</span> <span class="pill warn">lost in the first 15s</span></h3>
-      <a class="ref" href="https://next.frame.io/project/60db75b3-42ab-471c-b543-6f1b8506c76c/db0634f6-6263-4800-bce1-acb3e0bb8459" target="_blank" rel="noopener">Frame.io ↗</a>
-      <p><b>Hypothesis:</b> mirror the skincare TikTok where she names the viewer's insecurity, tells her the prettier women simply don't have problem X, and then explains it. Our version swaps in insulin sensitivity.</p>
+      <h3><span class="ic">🧩</span>Batch#102 — the insulin-sensitivity hook <span class="pill bad">lost</span> <span class="pill neutral">barely spent</span> <span class="pill warn">low hook rate AND low hold rate</span></h3>
+      <p>Modelled on a TikTok skincare video where the creator names a root cause the viewer had never considered. The structure was right; the root cause was unpicturable.</p>
       <div class="batch-cols">
         <div>
           <div class="label why">What went wrong</div>
           <ul class="clean">
-            <li><b>The hook can't be pictured.</b> "You lost the insulin sensitivity she has" — you can't visualize it, and nothing on screen helps you.</li>
-            <li><b>The root cause is too complex.</b> The inspiration used something anyone can see on a face; we used a metabolic term menopausal women don't know.</li>
-            <li><b>The knife is never twisted.</b> We don't earn the next 15 seconds, so Meta never gives it spend.</li>
-            <li><b>It points at a problem, not a root cause.</b> And it's stated flatly — no emotion anywhere in the read or the copy.</li>
-            <li><b>The VO is monotone.</b> Next to CB25, where the voice lifts and drops, both the hook rate and the hold rate suffer.</li>
+            <li><b>The hook can't be visualized.</b> "You lost the insulin sensitivity she has." Kay replayed it three times and still didn't get it — and nothing on screen helps.</li>
+            <li><b>The root cause is too abstract.</b> The inspiration video pointed at something you can see on a face. Insulin resistance is invisible.</li>
+            <li><b>It dies in the first 15 seconds.</b> Meta never gives it a chance to spend, because the knife never gets twisted at the open.</li>
+            <li><b>The voice is flat throughout.</b> No emotion in the read and none in the copy — it just states things plainly.</li>
           </ul>
         </div>
         <div>
           <div class="label win">What to keep</div>
           <ul class="clean">
-            <li><b>The "she's not better than you, she just doesn't have X" frame.</b> The imported structure is sound — the fill-in was wrong.</li>
-            <li><b>The practitioner authority beat.</b> "My menopause practitioner exposed that 82% of women over 40 secretly develop…" is a workable statistic-that-flips-it moment.</li>
+            <li><b>The root-cause-reveal structure itself.</b> It's the parasite playbook, and the parasite playbook works.</li>
+            <li><b>The practitioner-authority device</b> — "she exposed that 82% of women over 40..." — is a solid statistic-that-flips-it beat.</li>
           </ul>
           <div class="label fix">Iterate</div>
-          <div class="fix"><span class="arrow">→</span><div><b>Rename the root cause.</b> <span style="color:var(--faint)">Something visual and instantly understandable, in the poop-paralysis mould, plus B-roll that shows it.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Restructure the open.</b> <span style="color:var(--faint)">Tease the root cause → name the solutions she already tried, with symptoms → the statistic that flips it → more symptoms to confirm. The parasite playbook.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Test a symptoms callout into insulin.</b> <span style="color:var(--faint)">Lead with a symptom she already has, then funnel back to insulin as the cause.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Cut a Pixar-style side animation.</b> <span style="color:var(--faint)">Half the screen: food goes down the food pipe and turns into fat. Comprehension speed is the whole point.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Rename the mechanism, then rebuild the hook around it.</b> <span style="color:var(--faint)">Visual and instantly understandable — a body part, not a biomarker.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Restructure:</b> <span style="color:var(--faint)">tease the root cause → previously tried solutions with symptoms → the statistic that flips it → more symptoms to confirm it.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Add the B-roll.</b> <span style="color:var(--faint)">Utkarsh's idea: a Pixar-style side animation of food traveling down the food pipe and converting straight into fat.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Symptoms callout version.</b> <span style="color:var(--faint)">Kay is testing leading with a symptom they already have, then funneling into the mechanism.</span></div></div>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🏆</span>CB25 — Binge Eater Hack <span class="pill good">breakthrough winner</span> <span class="pill neutral">old ad account</span></h3>
-      <a class="ref" href="https://app.tryatria.com/ad/m1281075414128527" target="_blank" rel="noopener">Atria ↗</a>
+      <h3><span class="ic">🏆</span>CB25 — the 5-HTP / Starbucks talking head <span class="pill good">breakthrough winner</span> <span class="pill neutral">old ad account</span></h3>
+      <p>The cleanest example of the full structure. Leads with proof, introduces through Starbucks, one mechanism, then contrasts pain against ease.</p>
       <div class="batch-cols">
         <div>
           <div class="label win">Why it won</div>
           <ul class="clean">
-            <li><b>It promises cravings gone and nothing else.</b> No weight-loss claim, no visual before/after as the lead — and women over 50 and 60 still bought.</li>
-            <li><b>One mechanism only.</b> 5-HTP and serotonin as the single root cause. No bouncing between GLP-1, yerba mate and everything else.</li>
-            <li><b>Proof before product.</b> Forcing herself to eat, the wedding dress altered — and the "it fit two weeks ago" line that makes it land.</li>
-            <li><b>The drink arrives as a Starbucks refresher.</b> "Just grab a little Starbucks water… my fun little pinkity drinkity."</li>
-            <li><b>Pain contrasted with ease at the end.</b> Insecure in a bikini this summer, versus a packet in her purse.</li>
-            <li><b>Its own name for the problem.</b> "An emotional snacker" — we can't call women out for snacking directly without offending them, but framed this way they recognise themselves.</li>
+            <li><b>Proof before product.</b> "I literally have to force myself to eat after taking this." Then: "I had to get my brother's wedding dress altered because it's now too big on me. But it fit two weeks ago."</li>
+            <li><b>It's not just proof — it's "it worked too well."</b> A copywriting device: the product didn't merely work, it overshot. That's far more believable than a clean success story.</li>
+            <li><b>One mechanism only.</b> 5-HTP raises serotonin, low serotonin drives mood cravings. Named once, explained in two lines, dropped.</li>
+            <li><b>Introduced through a Starbucks cup.</b> "Just grab a little Starbucks water... my fun little pinkity drinkity."</li>
+            <li><b>Pain initiation, then ease.</b> "Summer's coming and you don't want to be insecure in a bikini" — set directly against "I just keep one of these little packets in my purse." The effort gap does the closing.</li>
+            <li><b>The CTA is the whole big idea in one line:</b> "a fun drink, but also control the cravings."</li>
           </ul>
         </div>
         <div>
-          <div class="label why">What to fix</div>
+          <div class="label why">The one real flaw</div>
           <ul class="clean">
-            <li><b>She opens holding the product.</b> Our ads have never posted a strong hook rate when they start on the product — people see it and know they're about to be sold to.</li>
-            <li><b>It tells the not-hungry reveal instead of showing it.</b> No visual of her refusing food anywhere.</li>
-            <li><b>The cast skews young</b> for the avatar that's actually buying.</li>
+            <li><b>She opens holding the product.</b> No ad has ever cleared roughly a 35% hook rate when the creator starts with the jar in hand — people read "I'm being sold something" and scroll. Easiest possible iteration.</li>
           </ul>
           <div class="label fix">Iterate</div>
-          <div class="fix"><span class="arrow">→</span><div><b>New hook with no product jar in the opening.</b> <span style="color:var(--faint)">Cheapest fix available, already in progress.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Exaggerate the results.</b> <span style="color:var(--faint)">"I had to stop drinking this, I was losing too much weight." "My mom started calling me sticks." Or the ER version.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Horizontally scale by avatar.</b> <span style="color:var(--faint)">Same script for a gym girl and for a menopausal woman, wording made congruent to each.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Plug the structure into old batches.</b> <span style="color:var(--faint)">Batch 42 has a near-identical skeleton — and its iterations may have failed because each one added more instead of taking things out.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>New hook, no jar in frame.</b> <span style="color:var(--faint)">Mei already has this one running.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Make the avatar older.</b> <span style="color:var(--faint)">Same script, older creator. A big share of buyers are 60–70, not 50.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Push the "worked too well" beat further.</b> <span style="color:var(--faint)">"I had to stop drinking this because I lost so much weight." "My mom started calling me sticks." An ER visit as the hook — then tune it down to the believable version.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Show her not being hungry.</b> <span style="color:var(--faint)">Squeeze a burger or a donut into frame and have her refuse it.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Horizontal scale by avatar.</b> <span style="color:var(--faint)">Same script, gym-girl version, changed only for avatar congruency.</span></div></div>
         </div>
       </div>
+      <p class="why"><b>Worth noting:</b> this script is structurally very close to batch #42. The old #42 iterations may have failed because each one <em>added</em> something. The move is to take things out, not put things in.</p>
     </div>
 
     <div class="card">
-      <h3><span class="ic">🏆</span>CB22 — Girlfriend Starving Herself <span class="pill good">breakthrough winner</span> <span class="pill neutral">skit</span></h3>
-      <a class="ref" href="https://app.tryatria.com/ad/m4330438327209514" target="_blank" rel="noopener">Atria ↗</a>
+      <h3><span class="ic">🏆</span>CB22 — the skit <span class="pill good">breakthrough winner</span> <span class="pill neutral">old ad account</span> <span class="pill good">no major weaknesses</span></h3>
+      <p>She says no to Chipotle, no to Bojangles, gets in the car, the boyfriend confronts her — and it turns out to be a Starbucks drink. Same three beats as CB25, wrapped in drama.</p>
       <div class="batch-cols">
         <div>
           <div class="label win">Why it won</div>
           <ul class="clean">
-            <li><b>It opens on something that looks bad.</b> "My girlfriend is starving herself" — the same negative framing as the spiked-drink ad. You're pulled in before you know what this is.</li>
-            <li><b>It shows the not-hungry reveal.</b> She turns down Chipotle, turns down Bojangles, and the boyfriend confronts her about it.</li>
-            <li><b>The contradiction is stated out loud.</b> "You're literally drinking that sugary ass drink, but you never want to eat anymore." Polar opposites, set up in the first seconds.</li>
-            <li><b>She names it herself.</b> "This is literally my craving control" — not the product name, not "a drink."</li>
-            <li><b>One problem, one mechanism, no complexity.</b> Same spine as CB25 in a completely different format.</li>
+            <li><b>It shows the not-hungry reveal first.</b> Refusing junk food, on camera, before anything is explained.</li>
+            <li><b>One problem, one mechanism, super simple.</b> Nothing else in the ad.</li>
+            <li><b>It opens negative.</b> "My girlfriend is starving herself." The audience is pulled in by something that looks like it's going badly.</li>
+            <li><b>The contradiction is stated out loud.</b> "You're literally drinking that sugary ass drink, but you never want to eat anymore" — the ad sets up its own paradox in the first breath.</li>
+            <li><b>"This is literally my craving control."</b> She never says the product name. She gives it a function name, and that name is the whole positioning.</li>
           </ul>
         </div>
         <div>
-          <div class="label win">What to test next</div>
-          <ul class="clean">
-            <li><b>No major weaknesses.</b> This one is about finding more ways to run the same spine, not repairing it.</li>
-            <li><b>The mechanism is probably swappable.</b> Serotonin to GLP-1 activation would likely still work — the intro sequence, the drama and the showing are what carry it.</li>
-          </ul>
           <div class="label fix">Iterate</div>
-          <div class="fix"><span class="arrow">→</span><div><b>Make the cast older.</b> <span style="color:var(--faint)">Same beats, older people, different locations.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Find new ways to refuse food.</b> <span style="color:var(--faint)">A family gathering where she won't eat with his family is the obvious next one.</span></div></div>
-          <div class="fix"><span class="arrow">→</span><div><b>Turn the skit into a story.</b> <span style="color:var(--faint)">Add the pain before and the thing that happened in the middle, so it plays like something you watch rather than something you're sold.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Make everyone older.</b> <span style="color:var(--faint)">Don't change the script. Same ad, older people, different locations.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Find new ways to refuse the food.</b> <span style="color:var(--faint)">This is the main axis of iteration — a family gathering where she won't eat with his family plays as real drama before the reveal.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Swap the mechanism freely.</b> <span style="color:var(--faint)">Serotonin → GLP-1 activation would probably still work. The intro sequence is what carries it, not the science.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Keep the spiking ambiguous.</b> <span style="color:var(--faint)">Never explain why the drink is being spiked. Not knowing whether it's a prank or a kindness is the curiosity engine.</span></div></div>
+          <div class="fix"><span class="arrow">→</span><div><b>Editors: completely different visuals.</b> <span style="color:var(--faint)">See the action items — this is the one that decides whether Meta spends.</span></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ [CARD] concepts ============ -->
 <section id="concepts">
   <div class="wrap">
-    <div class="section-head"><span class="num">04</span><h2>Concepts to iterate</h2></div>
-    <p class="section-lead">Everything agreed on the call, grouped by where it came from. Unclaimed ones are up for grabs.</p>
+    <div class="section-head"><span class="num">04</span><h2>Concepts up for grabs</h2></div>
+    <p class="section-lead">Everything the call agreed was worth making. Unclaimed ones are open — take one.</p>
 
     <div class="card">
-      <h3><span class="ic">🥤</span>Off CB22 — drama first, then the reveal</h3>
+      <h3><span class="ic">🍸</span>The spiked-drink family <span class="pill neutral">from CB22</span></h3>
+      <p>All variations on one beat: someone slips the drink to someone else, and the food refusal that follows is the payoff.</p>
       <ul class="clean">
-        <li><b>Indecisive girlfriend.</b> He hands her the drink before they pick a restaurant, and suddenly she doesn't want to go anywhere.</li>
-        <li><b>Girlfriend craves junk food.</b> He spikes her drink in the car on the way, and she has no appetite by the time they sit down.</li>
-        <li><b>Thanksgiving.</b> Grandma's drink gets spiked, the turkey comes out, grandma wants none of it.</li>
-        <li><b>The wedding.</b> The bride's drink gets spiked and she won't eat her own cake.</li>
-        <li><b>Ex-husband spikes her drink</b> at the wedding — same beat, maximum controversy.</li>
-        <li><b>Girlfriend loves eating out, boyfriend never joins her.</b></li>
-        <li><b>Family gathering.</b> She won't eat with his family and it becomes a scene — then it turns out she's just drinking this.</li>
-        <li><b>Boyfriend secretly drinking her pink drink</b> and not understanding why he isn't hungry. Claimed — Mei, in progress, coupled with the Nana character. <a class="ref" href="https://www.facebook.com/61579184211123/posts/122156834918972807/" target="_blank" rel="noopener">Reference ad ↗</a></li>
+        <li><b>Indecisive girlfriend.</b> She can't decide where to eat, he hands her the drink first — and then she doesn't want to go anywhere.</li>
+        <li><b>Junk-food girlfriend.</b> He spikes her drink in the car before the restaurant; by the time they sit down she wants nothing.</li>
+        <li><b>Thanksgiving grandma.</b> Her drink gets spiked, the turkey comes out, she doesn't want any of it.</li>
+        <li><b>The bride.</b> Someone spikes the bride's drink and she can't eat her own wedding cake.</li>
+        <li><b>The ex-husband.</b> He turns up at the wedding and spikes her drink. The most controversial version of the beat.</li>
+        <li><b>Reverse it — the boyfriend secretly drinking hers.</b> He has no idea that's why he isn't hungry; she catches him. Doubles as a proof element. <span class="pill neutral">Mei — in progress, coupled with the nana character</span></li>
+        <li><b>Boyfriend never eats with his girlfriend</b>, who loves to eat.</li>
+        <li><b>Family gathering.</b> She won't eat with his family, it reads as something horrible, and it turns out she's just drinking this.</li>
       </ul>
-      <p class="why"><b>Keep the spiking ambiguous.</b> Never explain at the start why the drink is being spiked — prank or kindness. Not knowing is the curiosity that holds them.</p>
     </div>
 
     <div class="card">
-      <h3><span class="ic">📋</span>Off the other three batches</h3>
+      <h3><span class="ic">☕</span>CB25 spin-offs</h3>
       <ul class="clean">
-        <li><b>#98 — insulin rewrite.</b> One plain mechanism, confirmed with symptoms. Claimed — Khush, with Leo.</li>
-        <li><b>#98 — 50-year-old language pass.</b> Claimed — Mei.</li>
-        <li><b>#102 — renamed root cause,</b> something you can picture and feel, plus the B-roll that shows it.</li>
-        <li><b>#102 — parasite-playbook restructure</b> of the opening sequence.</li>
-        <li><b>#102 — symptoms callout</b> leading into insulin.</li>
-        <li><b>CB25 — new hook, no product jar in the opening.</b> Claimed — Mei.</li>
-        <li><b>CB25 — "worked too well" proof variants</b> and the avatar-by-avatar horizontal scale.</li>
+        <li><b>New hook, no product jar in the opening frame.</b> <span class="pill neutral">Mei — in progress</span></li>
+        <li><b>Older-avatar version.</b> Same script, older creator, everything else held.</li>
+        <li><b>The "worked too well" hook.</b> "I had to stop drinking this because I lost so much weight" / "my mom started calling me sticks."</li>
+        <li><b>The ER hook.</b> The worst thing that happens when it works too well — then tuned down to where it's shocking but still believable.</li>
+        <li><b>The binge-eater hack angle.</b> Named on the call as territory we have never gone deep into.</li>
+        <li><b>Gym-girl horizontal scale.</b> Same winning script, rewritten only for avatar congruency.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="ic">🧪</span>Loser iterations</h3>
+      <ul class="clean">
+        <li><b>Batch#98 — insulin variation.</b> Mechanism described, not named: food stored as fat, confirmed with symptoms. <span class="pill neutral">Khush + Leo — in progress</span></li>
+        <li><b>Batch#98 — older-language rewrite.</b> Facebook group instead of TikTok. <span class="pill neutral">Mei — in progress</span></li>
+        <li><b>Batch#102 — renamed-mechanism hook</b> plus B-roll that makes it visible.</li>
+        <li><b>Batch#102 — symptoms callout</b> built on insulin resistance. <span class="pill neutral">Kay — in progress</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ [CHECKLIST] ============ -->
 <section id="actions">
   <div class="wrap">
     <div class="section-head"><span class="num">05</span><h2>Action items</h2></div>
     <p class="section-lead">If you read one section, read this.</p>
 
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Write the #98 insulin iteration.</b> Plain-language mechanism, symptoms rather than explanation. Expected to run 2:30–3:00 — back and forth with Leo before it ships.</div><div class="owner">Khush</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Build the breakthrough-ads doc.</b> Every winner, broken into the reusable "Lego pieces" we can drop into new scripts to raise the hit rate.</div><div class="owner">Khush</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Send Khush the winning-ad transcripts.</b> Already pulled — the raw material for the Lego-pieces doc.</div><div class="owner">Mei</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Ship the three iterations in flight.</b> #98 in 50-year-old language, CB25 with a new hook and no product jar, and the boyfriend-secretly-drinking concept with the Nana character.</div><div class="owner">Mei</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Find the new name for insulin resistance.</b> Brainstorm with AI until it's visual and instantly understandable — cells starving, food stored as fat, something you can see.</div><div class="owner">Leo</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Build a better system for tracking iterations</b> — which batches we've already iterated on, and what came of them.</div><div class="owner">Leo</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Check the post-purchase survey on the 60–70 avatar.</b> A large share of buyers on the new ads are past menopausal age, which may be the easiest avatar to sell with the ideas we have now.</div><div class="owner">Leo</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Sort out the Kie.ai output quality.</b> Images come out soft and the video generated from them breaks down — Higgsfield and the Google Flow path were both raised as alternatives.</div><div class="owner">Editors</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Try the Pixar-style insulin B-roll.</b> Side-view animation of food travelling down and turning into fat, on half the screen.</div><div class="owner">Utkarsh</div></div>
-    <div class="check"><div class="box"></div><div class="ctxt"><b>Think about turning our skits into stories.</b> Standing question for every strategist, not a one-week task.</div><div class="owner">All CS</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Never open on the product in hand.</b> The jar or packet enters only after the not-hungry reveal has landed.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>When iterating old-account content, change every visual.</b> Different creator, different background, different setting — no 1:1 reuse. Reusing them is the fastest way to fatigue an ad, and Meta stops spending once the pixel has already run that visual.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Put at least one visible food-refusal shot in every skit</b>, before the product is named.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Use real Starbucks cups in frame.</b> A pink Starbucks cup, or a Starbucks water cup they mix the packet into.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Give the voice range.</b> Batch#102's read is flat end to end; CB25's creator actively raises and lowers her tone. Flat delivery cost us both hook rate and hold rate.</div><div class="owner">Editors</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>One mechanism per script.</b> Insulin resistance OR strawberry acai/cravings OR removing all hunger OR GLP-1 — never a blend.</div><div class="owner">All strategists</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Lead on cravings and hunger only.</b> Physical results appear as proof after the promise, never as the claim we hammer.</div><div class="owner">All strategists</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Write a doc extracting the reusable "Lego pieces"</b> from every breakthrough winner, to lift the hit rate.</div><div class="owner">Khush</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Send Khush the transcripts of all the winning ads.</b> Already run through Claude.</div><div class="owner">Mei</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Build 2–3 avatar-congruent horizontal-scale versions of CB25.</b></div><div class="owner">Utkarsh</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Log ad bounties in the OVIA growth guide</b> under your own name, with the proper naming format.</div><div class="owner">Kay</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Build a better system for tracking which batches we have already iterated.</b></div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Brainstorm a visual rename for insulin resistance</b>, and new ways to show the not-hungry reveal.</div><div class="owner">Leo</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Go back through old batches and plug the CB25 structure in</b>, at the 5–6 iterations-per-week pace.</div><div class="owner">All strategists</div></div>
+    <div class="check"><div class="box"></div><div class="ctxt"><b>Think about how to turn our skits into stories.</b> Flagged on the board as something every creative strategist needs to work on.</div><div class="owner">All strategists</div></div>
 
-    <div class="note"><b>Editors, the one rule for iterating old ad-account content:</b> do not reuse the same characters, the same creator or the same backgrounds. Keeping it 1:1 is the fastest way to fatigue an ad, and Meta reads it as something the pixel has already run and stops spending on it. Change the visuals completely.</div>
+    <div class="note"><b>Open item:</b> Kie.ai is producing low-quality stills, and they don't hold up once they're turned into video — Higgsfield and Google Flow are giving clearer images going into the video step. Raised on the call and parked without a decision.</div>
+    <div class="note"><b>Next call:</b> the nana UGC — Khush's grandma-perspective story version of batch #88 — gets torn down regardless of whether it wins. One purchase so far, roughly 1.23 ROAS, launched recently.</div>
   </div>
 </section>
 
-<!-- ============ [FOOTER] ============ -->
 <footer>
   <div class="wrap">
     <p class="grad">Learnings Call #12</p>
-    <p style="margin-top:6px">One idea they can point to, shown rather than said, wrapped in something they already recognise.</p>
+    <p style="margin-top:6px">One problem, one mechanism, shown on screen — and let them do the rest of the math themselves.</p>
   </div>
 </footer>
 
